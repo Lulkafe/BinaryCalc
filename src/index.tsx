@@ -1,8 +1,6 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
+import BitCalc from './components';
 import './style.css';
 
-const text: string = 'Hello React';
-const Test = <p>Greeting From React</p>;
-
-ReactDOM.render(Test, document.getElementById('root'))
+ReactDOM.render(<BitCalc />, document.getElementById('root'))

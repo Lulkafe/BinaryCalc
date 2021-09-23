@@ -200,13 +200,23 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 
 /***/ }),
 
+/***/ "./src/components.tsx":
+/*!****************************!*\
+  !*** ./src/components.tsx ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ BitCalc)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar NumBase;\n(function (NumBase) {\n    NumBase[NumBase[\"BIN\"] = 0] = \"BIN\";\n    NumBase[NumBase[\"DEC\"] = 1] = \"DEC\";\n    NumBase[NumBase[\"HEX\"] = 2] = \"HEX\";\n})(NumBase || (NumBase = {}));\nfunction BitCalc() {\n    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null,\n        react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"p\", null, \"Greeting from React!\")));\n}\n//******* COMPONENTS FOR WRAPPER WINDOW *******\nfunction Window() {\n}\n//******* COMPONENTS FOR INPUT SECTION *******\nfunction InputSection() {\n}\n//******* COMPONENTS FOR UI SECTION *******\nfunction UIButton(text) {\n    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"button\", null, text));\n}\n//******* COMPONENTS FOR OUPUT SECTION *******\nfunction OutputSeparator() {\n}\nfunction OutputSection() {\n}\nfunction OutputNavi() {\n    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"nav\", null,\n        react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"ul\", null,\n            react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"li\", null, \"Input 1\"),\n            react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"li\", null, \"Input 2\"),\n            react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"li\", null, \"Result\"))));\n}\nfunction OutputBar(sys) {\n    var header = '';\n    var init_val = '';\n    switch (sys) {\n        case NumBase.BIN:\n            header = 'BIN';\n            init_val = '0b0000000000000000000000000000';\n            break;\n        case NumBase.DEC:\n            header = 'DEC';\n            init_val = '0';\n            break;\n        case NumBase.HEX:\n            header = 'HEX';\n            init_val = '0x0';\n            break;\n    }\n    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null,\n        react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"label\", null, header),\n        react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"input\", { type: \"text\" }),\n        react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"button\", { type: \"button\" }, \"Copy\")));\n}\n\n\n//# sourceURL=webpack://my-webpack-project/./src/components.tsx?");
+
+/***/ }),
+
 /***/ "./src/index.tsx":
 /*!***********************!*\
   !*** ./src/index.tsx ***!
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\n\nvar text = 'Hello React';\nvar Test = react__WEBPACK_IMPORTED_MODULE_1__.createElement(\"p\", null, \"Greeting From React\");\nreact_dom__WEBPACK_IMPORTED_MODULE_0__.render(Test, document.getElementById('root'));\n\n\n//# sourceURL=webpack://my-webpack-project/./src/index.tsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components */ \"./src/components.tsx\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\n\n\nreact_dom__WEBPACK_IMPORTED_MODULE_0__.render(react__WEBPACK_IMPORTED_MODULE_1__.createElement(_components__WEBPACK_IMPORTED_MODULE_2__[\"default\"], null), document.getElementById('root'));\n\n\n//# sourceURL=webpack://my-webpack-project/./src/index.tsx?");
 
 /***/ })
 
