@@ -5,6 +5,10 @@ enum NumBase {
     BIN, DEC, HEX
 }
 
+enum BitOper {
+    AND, OR, XOR, NOT
+}
+
 export default function BitCalc () {
     return (
         <div>
@@ -14,16 +18,51 @@ export default function BitCalc () {
 }
 
 
-//******* COMPONENTS FOR WRAPPER WINDOW *******
+//******* COMPONENTS FOR WINDOW (WRAPPER) *******
 function Window () {
+    return (
+        <div id='window'>
+            <div id='window__menubar'></div>
 
+        </div>
+    )
 }
 
 
+//******* COMPONENTS FOR BINTABLE SECTION *******
+function BinaryTable (input1: number = 0, input2: number = 0, oper: BitOper = BitOper.OR) {
 
-//******* COMPONENTS FOR INPUT SECTION *******
-function InputSection () {
-    
+    const num_bits = 31;
+    const bin_input1 = input1.toString(2);
+    const bin_input2 = input2.toString(2);
+    let bin_result = 0;
+
+
+    return (
+        <table>
+            <thead>
+                <tr>
+                    { 
+                        [...new Array(num_bits)].map((d, i) => <th>{ num_bits - i }</th>) 
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr id='binTable__input1'>
+
+                </tr>
+                <tr id='binTable__input2'>
+
+                </tr>
+                <tr>
+                    <hr id='binTable__separator'/>
+                </tr>
+                <tr id='binTable__result'>
+
+                </tr>
+            </tbody>
+        </table>
+    )
 }
 
 
@@ -35,6 +74,18 @@ function UIButton (text: string) {
     );
 }
 
+
+function BitwiseButtons () {
+    return (
+        <div id="ui__bitwise-buttons">
+            
+        </div>
+    )
+}
+
+function BitCngButtngs () {
+
+}
 
 
 //******* COMPONENTS FOR OUPUT SECTION *******
