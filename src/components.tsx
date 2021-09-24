@@ -9,41 +9,40 @@ enum BitOper {
     AND, OR, XOR, NOT
 }
 
+enum PageTab {
+    Input1, Input2, Result
+}
+
 export default function BitCalc () {
     return (
         <div>
-            <p>Greeting from React!</p>
+            <Window>
+            </Window>
         </div>
     )
 }
 
 
 //******* COMPONENTS FOR WINDOW (WRAPPER) *******
-function Window () {
+function Window (props) {
     return (
         <div id='window'>
             <div id='window__menubar'></div>
-
+            {props.children}
         </div>
     )
 }
 
 
 //******* COMPONENTS FOR BINTABLE SECTION *******
-function BinaryTable (input1: number = 0, input2: number = 0, oper: BitOper = BitOper.OR) {
-
-    const num_bits = 31;
-    const bin_input1 = input1.toString(2);
-    const bin_input2 = input2.toString(2);
-    let bin_result = 0;
-
+function BinaryTable () {
 
     return (
         <table>
             <thead>
                 <tr>
                     { 
-                        [...new Array(num_bits)].map((d, i) => <th>{ num_bits - i }</th>) 
+                        [...new Array(31)].map((d, i) => <th>{ 31 - i }</th>) 
                     }
                 </tr>
             </thead>
@@ -68,9 +67,19 @@ function BinaryTable (input1: number = 0, input2: number = 0, oper: BitOper = Bi
 
 
 //******* COMPONENTS FOR UI SECTION *******
-function UIButton (text: string) {
+function UIButtons (props) {
     return (
-        <button>{text}</button>
+        <div>
+            <BitwiseButtons />
+            <BitMnpButtngs />
+        </div>
+    )
+}
+
+
+function UIButton (props) {
+    return (
+        <button>{props.text}</button>
     );
 }
 
@@ -78,13 +87,23 @@ function UIButton (text: string) {
 function BitwiseButtons () {
     return (
         <div id="ui__bitwise-buttons">
-            
+            <UIButton text='AND' />
+            <UIButton text='OR' />
+            <UIButton text='XOR' />
+            <UIButton text='NOT' />
         </div>
     )
 }
 
-function BitCngButtngs () {
-
+function BitMnpButtngs () {
+    return (
+        <div id="ui__bit-mnp-buttons">
+            <UIButton text='<<' />
+            <UIButton text='>>' />
+            <UIButton text='All 1s' />
+            <UIButton text='Clear' />
+        </div>
+    )
 }
 
 
@@ -109,7 +128,7 @@ function OutputNavi () {
     )
 }
 
-function OutputBar(sys: NumBase) {
+function OutputBar(sys) {
     
     let header: string = '';
     let init_val: string  = '';
