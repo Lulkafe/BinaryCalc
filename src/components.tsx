@@ -1,24 +1,70 @@
 import React from 'react';
-import { useState } from 'react';
+import { useReducer } from 'react';
 
-enum NumBase {
-    BIN, DEC, HEX
+enum NumBase { BIN, DEC, HEX };
+enum Bitwise { AND, OR, XOR, NOT };
+enum ItemTab { Input1, Input2, Result };
+
+const actions = {
+    bits: {
+        flip: 'Update a bit',
+        shift_left: 'Left shift',
+        shift_right: 'Right shift',
+        clear: 'Clear all bits',
+        all1s: 'Make all bits 1'
+    },
+    bitwise: {
+        change: 'Changed the bitwise operator'
+    },
+    tab: {
+        click: 'Clicked an output tab'
+    }
 }
 
-enum BitOper {
-    AND, OR, XOR, NOT
+const initState = {
+    input1: 0,
+    input2: 0,
+    result: 0,
+    bitwise: Bitwise.AND,
+    tab: ItemTab.Input1
 }
 
-enum PageTab {
-    Input1, Input2, Result
+const reducer = (state, action) => {
+
+    switch(action.type) {
+        case actions.bits.flip:
+            break;
+        case actions.bits.shift_left:
+            break;
+        case actions.bits.shift_right:
+            break;
+        case actions.bits.clear:
+            
+            break;
+        case actions.bits.all1s:
+            
+            break;
+        case actions.bitwise.change:
+            return {
+                ...state,
+                bitwise: action.value
+            }
+        case actions.tab.click:
+            return {
+                ...state,
+                tab: action.value
+            }
+        default:
+            return state;
+    }
+
 }
+
 
 export default function BitCalc () {
     return (
-        <div>
-            <Window>
-            </Window>
-        </div>
+        <Window>
+        </Window>    
     )
 }
 
@@ -79,7 +125,7 @@ function UIButtons (props) {
 
 function UIButton (props) {
     return (
-        <button>{props.text}</button>
+        <button className=''>{props.text}</button>
     );
 }
 
