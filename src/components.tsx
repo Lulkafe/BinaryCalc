@@ -2,7 +2,7 @@ import React from 'react';
 import { useReducer, useContext } from 'react';
 
 enum NumBase { BIN, DEC, HEX };
-enum Bitwise { AND, OR, XOR, NOT };
+enum Bitwise { AND, OR, XOR };
 enum Item { Input1, Input2, Result };
 
 const actions = {
@@ -22,29 +22,87 @@ const actions = {
 }
 
 const initState = {
-    input1: 0,
+    input1: 128,
     input2: 0,
     result: 0,
     bitwise: Bitwise.AND,
     item: Item.Input1
 }
 
-const BitReducer = (state, action) => {
+
+const bitReducer = (state, action) => {
+
+    console.log(`New Action comes: ${action.type}`);
+    const { input1, input2,  bitwise } = state;
+    const recalculateResult = (v1, v2, oper=bitwise) => {
+        if (oper === Bitwise.AND)
+            return v1 & v2;
+        if (oper === Bitwise.OR)
+            return v1 | v2;
+        if (oper === Bitwise.XOR)
+            return v1 ^ v2;            
+    }
 
     switch(action.type) {
         case actions.bits.flip:
             break;
+
         case actions.bits.shift_left:
-            
+            if (action.item === Item.Input1)
+                return {
+                    ...state,
+                    input1: input1 << 1,
+                    result: recalculateResult(input1 << 1, input2)
+                }
+            if (action.item === Item.Input2)
+                return {
+                    ...state,
+                    input2: input2 << 1,
+                    result: recalculateResult(input1, input2 << 1)
+                }
             break;
+
         case actions.bits.shift_right:
+            if (action.item === Item.Input1)
+                return {
+                    ...state,
+                    input1: input1 >> 1,
+                    result: recalculateResult(input1 >> 1, input2)
+                }
+            if (action.item === Item.Input2)
+                return {
+                    ...state,
+                    input2: input2 >> 1,
+                    result: recalculateResult(input1, input2 >> 1)
+                }
             break;
+        
         case actions.bits.clear:
-            
+            if (action.item === Item.Input1)
+                return { 
+                    ...state, 
+                    input1: 0,
+                    result: recalculateResult(0, input2) 
+                };
+            if (action.item === Item.Input2)
+                return { 
+                    ...state, 
+                    input2: 0,
+                    result: recalculateResult(input1, 0)
+                };  
             break;
+
         case actions.bits.all1s:
-            
+            if (action.item === Item.Input1)
+                return { 
+                    ...state, 
+                    input1: -1,
+                    result: recalculateResult(-1, input2)
+                };
+            if (action.item === Item.Input2)
+                return { ...state, input2: ~0 };
             break;
+
         case actions.bitwise.change:
             return {
                 ...state,
@@ -55,19 +113,17 @@ const BitReducer = (state, action) => {
                 ...state,
                 tab: action.value
             }
-        default:
-            return state;
     }
 
+    return state;
 }
 
 
 const CalcContext = React.createContext(undefined);
 
-
 export default function BitCalc () {
 
-    const [ state, dispatch ] = useReducer(BitReducer, initState);
+    const [ state, dispatch ] = useReducer(bitReducer, initState);
 
     return (
         <div>
@@ -96,31 +152,44 @@ function Window (props) {
 function BinaryTable () {
 
     const { state, dispatch} = useContext(CalcContext);
+    const { input1, input2, result } = state;
+    const ary = [...new Array(32)];
+    const bin_at = (v, i) => (v >> (31 - i)) & 1;
+    const input1_click = 
+        () => dispatch({ type: actions.bits.flip, item: Item.Input1 });
+    const input2_click = 
+        () => dispatch({ type: actions.bits.flip, item: Item.Input2 });
 
     return (
-        <table>
+        <table id='binTable'>
             <thead>
                 <tr>
-                    { [...new Array(31)].map((d, i) => <th>{ 31 - i }</th>) }
+                    { ary.map((d, i) => <th key={'header' + i}>{ 31 - i }</th>) }
                 </tr>
             </thead>
             <tbody>
                 <tr id='binTable__input1'>
-                    
+                    { ary.map((d, i) => 
+                        <td onClick={input1_click} key={'input1_' + i}>
+                            {bin_at(input1,i)}
+                        </td>)}
                 </tr>
-
                 <tr id='binTable__input2'>
-
+                  { ary.map((d, i) => 
+                        <td onClick={input2_click} key={'input2_' + i}>
+                            {bin_at(input2,i)}
+                        </td>)}
                 </tr>
-
                 <tr>
-                    <td colSpan={32}>
+                    <td colSpan={32} key='binTable_separator'>
                         <hr id='binTable__separator'/>
                     </td>
                 </tr>
-
                 <tr id='binTable__result'>
-
+                    { ary.map((d, i) => 
+                        <td key={'result_' + i}>
+                            { bin_at(result, i) }
+                        </td> )}
                 </tr>
             </tbody>
         </table>

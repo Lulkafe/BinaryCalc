@@ -1,8 +1,20 @@
-p {
-    color: green;
-    font-size: 33px;
+* {
+    box-sizing: border-box;
+}
+
+#binTable {
+    text-align: center;
+    font-family: monospace;
+}
+
+#binTable__input1, #binTable__input2, #binTable__result {
+    font-size: 36px;
+}
+
+#binTable__input1 td, #binTable__input2 td {
+    cursor: pointer;
 }
 
 body {
-    background: yellow;
+    background: lightblue;
 }
