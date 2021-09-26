@@ -130,6 +130,7 @@ export default function BitCalc () {
             <CalcContext.Provider value={{state, dispatch}}>
                 <Window>
                     <BinaryTable />
+                    <UIButtons />
                 </Window>    
             </CalcContext.Provider>
         </div>
@@ -170,13 +171,15 @@ function BinaryTable () {
             <tbody>
                 <tr id='binTable__input1'>
                     { ary.map((d, i) => 
-                        <td onClick={input1_click} key={'input1_' + i}>
+                        <td onClick={input1_click} 
+                            key={'input1_' + i}>
                             {bin_at(input1,i)}
                         </td>)}
                 </tr>
                 <tr id='binTable__input2'>
                   { ary.map((d, i) => 
-                        <td onClick={input2_click} key={'input2_' + i}>
+                        <td onClick={input2_click} 
+                            key={'input2_' + i}>
                             {bin_at(input2,i)}
                         </td>)}
                 </tr>
@@ -211,29 +214,44 @@ function UIButtons (props) {
 
 function UIButton (props) {
     return (
-        <button className=''>{props.text}</button>
+        <button 
+            className='ui__button'
+            onClick={props.onClick}>
+            {props.text} 
+        </button>
     );
 }
 
 
 function BitwiseButtons () {
+    const { state, dispatch } = useContext(CalcContext);
+    const createAction = (oper:Bitwise) => () => dispatch({
+        type: actions.bitwise.change,
+        value: oper
+    })
+
     return (
         <div id="ui__bitwise-buttons">
-            <UIButton text='AND' />
-            <UIButton text='OR' />
-            <UIButton text='XOR' />
-            <UIButton text='NOT' />
+            <UIButton text='AND' onClick={createAction(Bitwise.AND)}/>
+            <UIButton text='OR'  onClick={createAction(Bitwise.OR)} />
+            <UIButton text='XOR' onClick={createAction(Bitwise.XOR)}/>
         </div>
     )
 }
 
 function BitMnpButtngs () {
+    const { state, dispatch } = useContext(CalcContext);
+
     return (
         <div id="ui__bit-mnp-buttons">
-            <UIButton text='<<' />
-            <UIButton text='>>' />
-            <UIButton text='All 1s' />
-            <UIButton text='Clear' />
+            <UIButton text='<<' 
+                onClick={() => dispatch({ type: actions.bits.shift_left})}/>
+            <UIButton text='>>'
+                onClick={() => dispatch({ type: actions.bits.shift_right})}/>
+            <UIButton text='All 1s'
+                onClick={() => dispatch({ type: actions.bits.all1s})}/>
+            <UIButton text='Clear' 
+                onClick={() => dispatch({ type: actions.bits.clear})}/>
         </div>
     )
 }
@@ -241,7 +259,7 @@ function BitMnpButtngs () {
 
 //******* COMPONENTS FOR OUPUT SECTION *******
 function OutputSeparator () {
-
+    
 }
 
 function OutputSection () {
