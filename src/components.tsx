@@ -1,9 +1,9 @@
 import React from 'react';
-import { useReducer } from 'react';
+import { useReducer, useContext } from 'react';
 
 enum NumBase { BIN, DEC, HEX };
 enum Bitwise { AND, OR, XOR, NOT };
-enum ItemTab { Input1, Input2, Result };
+enum Item { Input1, Input2, Result };
 
 const actions = {
     bits: {
@@ -26,15 +26,16 @@ const initState = {
     input2: 0,
     result: 0,
     bitwise: Bitwise.AND,
-    tab: ItemTab.Input1
+    item: Item.Input1
 }
 
-const reducer = (state, action) => {
+const BitReducer = (state, action) => {
 
     switch(action.type) {
         case actions.bits.flip:
             break;
         case actions.bits.shift_left:
+            
             break;
         case actions.bits.shift_right:
             break;
@@ -61,10 +62,21 @@ const reducer = (state, action) => {
 }
 
 
+const CalcContext = React.createContext(undefined);
+
+
 export default function BitCalc () {
+
+    const [ state, dispatch ] = useReducer(BitReducer, initState);
+
     return (
-        <Window>
-        </Window>    
+        <div>
+            <CalcContext.Provider value={{state, dispatch}}>
+                <Window>
+                    <BinaryTable />
+                </Window>    
+            </CalcContext.Provider>
+        </div>
     )
 }
 
@@ -83,25 +95,30 @@ function Window (props) {
 //******* COMPONENTS FOR BINTABLE SECTION *******
 function BinaryTable () {
 
+    const { state, dispatch} = useContext(CalcContext);
+
     return (
         <table>
             <thead>
                 <tr>
-                    { 
-                        [...new Array(31)].map((d, i) => <th>{ 31 - i }</th>) 
-                    }
+                    { [...new Array(31)].map((d, i) => <th>{ 31 - i }</th>) }
                 </tr>
             </thead>
             <tbody>
                 <tr id='binTable__input1'>
-
+                    
                 </tr>
+
                 <tr id='binTable__input2'>
 
                 </tr>
+
                 <tr>
-                    <hr id='binTable__separator'/>
+                    <td colSpan={32}>
+                        <hr id='binTable__separator'/>
+                    </td>
                 </tr>
+
                 <tr id='binTable__result'>
 
                 </tr>
