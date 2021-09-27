@@ -22,9 +22,9 @@ const actions = {
 }
 
 const initState = {
-    input1: 128,
-    input2: 0,
-    result: 0,
+    input1: 3315,
+    input2: 3432,
+    result: 3315 & 3432,
     bitwise: Bitwise.AND,
     item: Item.Input1
 }
@@ -48,13 +48,13 @@ const bitReducer = (state, action) => {
             break;
 
         case actions.bits.shift_left:
-            if (action.item === Item.Input1)
+            if (state.item === Item.Input1)
                 return {
                     ...state,
                     input1: input1 << 1,
                     result: recalculateResult(input1 << 1, input2)
                 }
-            if (action.item === Item.Input2)
+            if (state.item === Item.Input2)
                 return {
                     ...state,
                     input2: input2 << 1,
@@ -63,13 +63,13 @@ const bitReducer = (state, action) => {
             break;
 
         case actions.bits.shift_right:
-            if (action.item === Item.Input1)
+            if (state.item === Item.Input1)
                 return {
                     ...state,
                     input1: input1 >> 1,
                     result: recalculateResult(input1 >> 1, input2)
                 }
-            if (action.item === Item.Input2)
+            if (state.item === Item.Input2)
                 return {
                     ...state,
                     input2: input2 >> 1,
@@ -78,13 +78,13 @@ const bitReducer = (state, action) => {
             break;
         
         case actions.bits.clear:
-            if (action.item === Item.Input1)
+            if (state.item === Item.Input1)
                 return { 
                     ...state, 
                     input1: 0,
                     result: recalculateResult(0, input2) 
                 };
-            if (action.item === Item.Input2)
+            if (state.item === Item.Input2)
                 return { 
                     ...state, 
                     input2: 0,
@@ -93,21 +93,25 @@ const bitReducer = (state, action) => {
             break;
 
         case actions.bits.all1s:
-            if (action.item === Item.Input1)
+            if (state.item === Item.Input1)
                 return { 
                     ...state, 
                     input1: -1,
                     result: recalculateResult(-1, input2)
                 };
-            if (action.item === Item.Input2)
+            if (state.item === Item.Input2)
                 return { ...state, input2: ~0 };
             break;
 
         case actions.bitwise.change:
+            const new_oper: Bitwise = action.value;
+
             return {
                 ...state,
-                bitwise: action.value
+                bitwise: new_oper,
+                result: recalculateResult(input1, input2, new_oper)
             }
+
         case actions.tab.click:
             return {
                 ...state,
@@ -244,14 +248,14 @@ function BitMnpButtngs () {
 
     return (
         <div id="ui__bit-mnp-buttons">
-            <UIButton text='<<' 
-                onClick={() => dispatch({ type: actions.bits.shift_left})}/>
-            <UIButton text='>>'
-                onClick={() => dispatch({ type: actions.bits.shift_right})}/>
-            <UIButton text='All 1s'
-                onClick={() => dispatch({ type: actions.bits.all1s})}/>
-            <UIButton text='Clear' 
-                onClick={() => dispatch({ type: actions.bits.clear})}/>
+            <UIButton text='<<' onClick={() => 
+                dispatch({ type: actions.bits.shift_left})}/>
+            <UIButton text='>>' onClick={() => 
+                dispatch({ type: actions.bits.shift_right})}/>
+            <UIButton text='All 1s' onClick={() => 
+                dispatch({ type: actions.bits.all1s})}/>
+            <UIButton text='Clear' onClick={() => 
+                dispatch({ type: actions.bits.clear})}/>
         </div>
     )
 }
@@ -259,7 +263,7 @@ function BitMnpButtngs () {
 
 //******* COMPONENTS FOR OUPUT SECTION *******
 function OutputSeparator () {
-    
+
 }
 
 function OutputSection () {
