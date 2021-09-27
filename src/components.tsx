@@ -22,9 +22,9 @@ const actions = {
 }
 
 const initState = {
-    input1: 3315,
-    input2: 3432,
-    result: 3315 & 3432,
+    input1: 0,
+    input2: 0,
+    result: 0,
     bitwise: Bitwise.AND,
     item: Item.Input1
 }
@@ -33,8 +33,10 @@ const initState = {
 const bitReducer = (state, action) => {
 
     console.log(`New Action comes: ${action.type}`);
+    console.log(action);
+
     const { input1, input2,  bitwise } = state;
-    const recalculateResult = (v1, v2, oper=bitwise) => {
+    const calculateResult = (v1, v2, oper=bitwise) => {
         if (oper === Bitwise.AND)
             return v1 & v2;
         if (oper === Bitwise.OR)
@@ -45,6 +47,24 @@ const bitReducer = (state, action) => {
 
     switch(action.type) {
         case actions.bits.flip:
+            if (action.item === Item.Input1) {
+                const new_val = input1 ^ (1 << action.index);
+                return {
+                    ...state,
+                    input1: new_val,
+                    result: calculateResult(new_val, input2),
+                    item: action.item
+                }
+            }
+            if (action.item === Item.Input2) {
+                const new_val = input2 ^ (1 << action.index);
+                return {
+                    ...state,
+                    input2: new_val,
+                    result: calculateResult(input1, new_val),
+                    item: action.item
+                }
+            }
             break;
 
         case actions.bits.shift_left:
@@ -52,13 +72,13 @@ const bitReducer = (state, action) => {
                 return {
                     ...state,
                     input1: input1 << 1,
-                    result: recalculateResult(input1 << 1, input2)
+                    result: calculateResult(input1 << 1, input2)
                 }
             if (state.item === Item.Input2)
                 return {
                     ...state,
                     input2: input2 << 1,
-                    result: recalculateResult(input1, input2 << 1)
+                    result: calculateResult(input1, input2 << 1)
                 }
             break;
 
@@ -67,13 +87,13 @@ const bitReducer = (state, action) => {
                 return {
                     ...state,
                     input1: input1 >> 1,
-                    result: recalculateResult(input1 >> 1, input2)
+                    result: calculateResult(input1 >> 1, input2)
                 }
             if (state.item === Item.Input2)
                 return {
                     ...state,
                     input2: input2 >> 1,
-                    result: recalculateResult(input1, input2 >> 1)
+                    result: calculateResult(input1, input2 >> 1)
                 }
             break;
         
@@ -82,13 +102,13 @@ const bitReducer = (state, action) => {
                 return { 
                     ...state, 
                     input1: 0,
-                    result: recalculateResult(0, input2) 
+                    result: calculateResult(0, input2) 
                 };
             if (state.item === Item.Input2)
                 return { 
                     ...state, 
                     input2: 0,
-                    result: recalculateResult(input1, 0)
+                    result: calculateResult(input1, 0)
                 };  
             break;
 
@@ -97,19 +117,21 @@ const bitReducer = (state, action) => {
                 return { 
                     ...state, 
                     input1: -1,
-                    result: recalculateResult(-1, input2)
+                    result: calculateResult(-1, input2)
                 };
             if (state.item === Item.Input2)
-                return { ...state, input2: ~0 };
+                return { ...state, input2: -1 };
             break;
 
         case actions.bitwise.change:
-            const new_oper: Bitwise = action.value;
+            {
+                const new_oper: Bitwise = action.value;
 
-            return {
-                ...state,
-                bitwise: new_oper,
-                result: recalculateResult(input1, input2, new_oper)
+                return {
+                    ...state,
+                    bitwise: new_oper,
+                    result: calculateResult(input1, input2, new_oper)
+                }
             }
 
         case actions.tab.click:
@@ -160,10 +182,10 @@ function BinaryTable () {
     const { input1, input2, result } = state;
     const ary = [...new Array(32)];
     const bin_at = (v, i) => (v >> (31 - i)) & 1;
-    const input1_click = 
-        () => dispatch({ type: actions.bits.flip, item: Item.Input1 });
-    const input2_click = 
-        () => dispatch({ type: actions.bits.flip, item: Item.Input2 });
+    const input1_click = (i) =>
+        () => dispatch({ type: actions.bits.flip, item: Item.Input1, index: i });
+    const input2_click = (i) =>
+        () => dispatch({ type: actions.bits.flip, item: Item.Input2, index: i });
 
     return (
         <table id='binTable'>
@@ -175,16 +197,16 @@ function BinaryTable () {
             <tbody>
                 <tr id='binTable__input1'>
                     { ary.map((d, i) => 
-                        <td onClick={input1_click} 
+                        <td onClick={input1_click(31 - i)} 
                             key={'input1_' + i}>
-                            {bin_at(input1,i)}
+                            {bin_at(input1, i)}
                         </td>)}
                 </tr>
                 <tr id='binTable__input2'>
                   { ary.map((d, i) => 
-                        <td onClick={input2_click} 
+                        <td onClick={input2_click(31 - i)} 
                             key={'input2_' + i}>
-                            {bin_at(input2,i)}
+                            {bin_at(input2, i)}
                         </td>)}
                 </tr>
                 <tr>
@@ -311,6 +333,11 @@ function OutputBar(sys) {
     )
 }
 
+function CopyButton (prop) {
+    return (
+        <button type='button' onClick={prop.onClick}>{prop.text}</button>
+    )
+}
 
 
 
