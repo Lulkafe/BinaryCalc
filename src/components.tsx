@@ -157,6 +157,8 @@ export default function BitCalc () {
                 <Window>
                     <BinaryTable />
                     <UIButtons />
+                    <OutputSeparator />
+                    <OutputSection />
                 </Window>    
             </CalcContext.Provider>
         </div>
@@ -285,60 +287,57 @@ function BitMnpButtngs () {
 
 //******* COMPONENTS FOR OUPUT SECTION *******
 function OutputSeparator () {
-
+    return <div><hr/></div>
 }
 
 function OutputSection () {
 
-}
-
-function OutputNavi () {
-    return (
-        <nav>
-            <ul>
-                <li>Input 1</li>
-                <li>Input 2</li>
-                <li>Result</li>
-            </ul>
-        </nav>
-    )
-}
-
-function OutputBar(sys) {
-    
-    let header: string = '';
-    let init_val: string  = '';
-
-    switch(sys) {
-      case NumBase.BIN: 
-        header = 'BIN';
-        init_val = '0b0000000000000000000000000000';
-        break;
-      case NumBase.DEC:
-        header = 'DEC';
-        init_val = '0';
-        break;
-      case NumBase.HEX:
-        header = 'HEX';
-        init_val = '0x0';
-        break;
-    }
- 
     return (
         <div>
-            <label>{header}</label>
-            <input type="text" /> 
-            <button type="button">Copy</button>
+            <OutputNavi/>
+            <OutputBars/>
         </div>
     )
 }
 
-function CopyButton (prop) {
+function OutputNavi () {
+
     return (
-        <button type='button' onClick={prop.onClick}>{prop.text}</button>
+        <nav>
+            <ul>
+                <li key='item-input1'>Input 1</li>
+                <li key='item-input2'>Input 2</li>
+                <li key='item-result'>Result</li>
+            </ul>
+        </nav>
+    )
+}
+function OutputBars(props) {
+
+    const { state, dispatch } = useContext(CalcContext); 
+
+
+    return (
+        <div>
+            <OutputBar header='BIN:' />
+            <OutputBar header='DEC:'/>
+            <OutputBar header='HEX:'/>
+        </div>
     )
 }
 
+function OutputBar(props) {
+    
+    const {header, value }= props;
+
+    return (
+        <div>
+            <label className='output-bar__label'>{header}</label>
+            <input type="text" value={value}/> 
+            <button type="button">Copy</button>
+        </div>
+    )
+}
 
 
 
