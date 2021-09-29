@@ -18,6 +18,9 @@ const actions = {
     },
     tab: {
         click: 'Clicked an output tab'
+    }, 
+    input: {
+        update: 'User gave an input value'
     }
 }
 
@@ -315,25 +318,44 @@ function OutputNavi () {
 function OutputBars(props) {
 
     const { state, dispatch } = useContext(CalcContext); 
+    const onKeyUp = function () {
+        dispatch({ action: actions.input.update, value: this.value })
+    }
+
+    let base_val: number = 0;
+    let bin_val: string = '';
+    let dec_val: string = '';
+    let hex_val: string = '';
+
+    if (state.item === Item.Input1)
+        base_val = state.input1;
+    else if (state.item === Item.Input2)
+        base_val = state.input2;
+    else if (state.item === Item.Result)
+        base_val = state.result;
+
+    bin_val = base_val.toString(2);
+    dec_val = base_val.toString(10);
+    hex_val = base_val.toString(16);
 
 
     return (
         <div>
-            <OutputBar header='BIN:' />
-            <OutputBar header='DEC:'/>
-            <OutputBar header='HEX:'/>
+            <OutputBar header='BIN:' value={bin_val} onKeyUp={onKeyUp}/>
+            <OutputBar header='DEC:' value={dec_val} onKeyUp={onKeyUp}/>
+            <OutputBar header='HEX:' value={hex_val} onKeyUp={onKeyUp}/>
         </div>
     )
 }
 
 function OutputBar(props) {
     
-    const {header, value }= props;
+    const {header, value, onKeyUp }= props;
 
     return (
         <div>
             <label className='output-bar__label'>{header}</label>
-            <input type="text" value={value}/> 
+            <input type="text" value={value} onKeyUp={onKeyUp} onChange={()=>{}}/>  
             <button type="button">Copy</button>
         </div>
     )
