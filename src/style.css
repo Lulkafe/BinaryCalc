@@ -5,10 +5,12 @@
 #binTable {
     text-align: center;
     font-family: monospace;
+    padding: 30px 0 30px 0;
+    margin: 0 auto;
 }
 
 #binTable__input1, #binTable__input2, #binTable__result {
-    font-size: 36px;
+    font-size: 34px;
 }
 
 #binTable__input1 td, #binTable__input2 td {
@@ -19,6 +21,35 @@
     font-family: monospace;
 }
 
-body {
-    background: lightblue;
+
+#ui__bitwise-buttons {
+    display:inline-block
+}
+
+#ui__bit-mnp-buttons {
+    display:inline-block
+}
+
+.ui__button-wrapper {
+    padding: 0 30px 0 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+#window {
+    min-width: 860px;
+    min-height: 820px;
+    /*padding: 0 50px 0 50px; */
+    width: 820px;
+    margin: 0 auto;
+    opacity: 53%;
+    color: white;
+    background: black;
+}
+
+#window__menubar {
+     background: #dbdbdb;
+     height: 38px;
 }

@@ -91,7 +91,7 @@ function BinaryTable () {
 //******* COMPONENTS FOR UI SECTION *******
 function UIButtons (props) {
     return (
-        <div>
+        <div className='ui__button-wrapper'>
             <BitwiseButtons />
             <BitMnpButtngs />
         </div>
