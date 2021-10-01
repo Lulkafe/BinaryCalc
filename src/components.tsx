@@ -30,7 +30,9 @@ function Window (props) {
     return (
         <div id='window'>
             <div id='window__menubar'></div>
-            {props.children}
+            <div id='window__content-wrapper'>
+                {props.children}
+            </div> 
         </div>
     )
 }
@@ -152,7 +154,7 @@ function OutputSeparator () {
 function OutputSection () {
 
     return (
-        <div>
+        <div id='output-section'>
             <OutputNavi/>
             <OutputBars/>
         </div>
@@ -162,23 +164,20 @@ function OutputSection () {
 function OutputNavi () {
 
     return (
-        <nav>
-            <ul>
-                <li key='item-input1'>Input 1</li>
-                <li key='item-input2'>Input 2</li>
+        <nav id='navi'>
+            <ul id='navi__item-list'>
+                <li key='item-input1'>Input1</li>
+                <li key='item-separator1'>|</li>
+                <li key='item-input2'>Input2</li>
+                <li key='item-separator2'>|</li>
                 <li key='item-result'>Result</li>
             </ul>
         </nav>
     )
 }
-function OutputBars(props) {
+function OutputBars() {
 
-    const { state, dispatch } = useContext(CalcContext); 
-    const onKeyUp = function (e) {
-        console.log(e.target);
-        dispatch({ action: actions.input.update, value: e.target.value })
-    }
-
+    const { state } = useContext(CalcContext); 
     let base_val: number = 0;
     let bin_val: string = '';
     let dec_val: string = '';
@@ -195,7 +194,6 @@ function OutputBars(props) {
     dec_val = base_val.toString(10);
     hex_val = base_val.toString(16);
 
-
     return (
         <div>
             <OutputBar header='BIN:' value={bin_val} />
@@ -210,10 +208,10 @@ function OutputBar(props) {
     const {header, value, onKeyUp }= props;
 
     return (
-        <div>
+        <div className='output-bar__wrapper'>
             <label className='output-bar__label'>{header}</label>
-            <input type="text" value={value} onChange={() => {}}/>  
-            <button type="button">Copy</button>
+            <input className='output-bar__input' type="text" value={value} onChange={() => {}}/>  
+            <button className='output-bar__copy-btn' type="button">Copy</button>
         </div>
     )
 }

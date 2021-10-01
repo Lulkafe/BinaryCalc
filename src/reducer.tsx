@@ -30,7 +30,7 @@ export const actions = {
 
 export const bitReducer = (state, action) => {
 
-    console.log(`New Action comes: ${action.type}`);
+    console.log(`New Action dispatched: ${action.type}`);
     console.log(action);
 
     const { input1, input2,  bitwise } = state;
