@@ -182,14 +182,18 @@ function OutputSection () {
 
 function OutputNavi () {
 
+    const { state } = useContext(CalcContext);
+    const getClass = (item: Item) => state.item == item? 
+        'navi__item navi__item__highlight' : 'navi__item';
+
     return (
         <nav id='navi'>
             <ul id='navi__item-list'>
-                <li key='item-input1'>Input1</li>
+                <li key='item-input1' className={getClass(Item.Input1)}>Input1</li>
                 <li key='item-separator1'>|</li>
-                <li key='item-input2'>Input2</li>
+                <li key='item-input2' className={getClass(Item.Input2)}>Input2</li>
                 <li key='item-separator2'>|</li>
-                <li key='item-result'>Result</li>
+                <li key='item-result' className={getClass(Item.Result)}>Result</li>
             </ul>
         </nav>
     )
