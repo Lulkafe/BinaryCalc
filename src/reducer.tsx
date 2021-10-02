@@ -5,7 +5,7 @@ export const initState = {
     input2: 0,
     result: 0,
     bitwise: Bitwise.AND,
-    item: Item.Input1
+    item: Item.Result
 }
 
 export const actions = {
@@ -124,6 +124,9 @@ export const bitReducer = (state, action) => {
         case actions.bitwise.change:
             {
                 const new_oper: Bitwise = action.value;
+
+                if (new_oper === state.bitwise)
+                    return state;
 
                 return {
                     ...state,
