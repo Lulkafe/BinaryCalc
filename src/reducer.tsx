@@ -139,7 +139,7 @@ export const bitReducer = (state, action) => {
         case actions.item.click:
             return {
                 ...state,
-                item: action.value
+                item: action.item
             }
         
         case actions.item.update:
