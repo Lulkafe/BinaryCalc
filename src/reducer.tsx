@@ -19,8 +19,9 @@ export const actions = {
     bitwise: {
         change: 'Changed the bitwise operator'
     },
-    tab: {
-        click: 'Clicked an output tab'
+    item: {
+        click: 'Clicked an output tab item',
+        update: 'Update a tab item'
     }, 
     input: {
         update: 'User gave an input value'
@@ -135,11 +136,18 @@ export const bitReducer = (state, action) => {
                 }
             }
 
-        case actions.tab.click:
+        case actions.item.click:
             return {
                 ...state,
-                tab: action.value
+                item: action.value
             }
+        
+        case actions.item.update:
+            return {
+                ...state,
+                item: action.item
+            }
+                
     }
 
     return state;

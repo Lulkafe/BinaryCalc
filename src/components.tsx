@@ -50,6 +50,8 @@ function BinaryTable () {
         () => dispatch({ type: actions.bits.flip, item: Item.Input1, index: i });
     const input2_click = (i) =>
         () => dispatch({ type: actions.bits.flip, item: Item.Input2, index: i });
+    const result_click = 
+        () => dispatch({ type: actions.item.update, item: Item.Result});
 
     return (
         <table id='binTable'>
@@ -78,7 +80,7 @@ function BinaryTable () {
                         <hr id='binTable__separator'/>
                     </td>
                 </tr>
-                <tr id='binTable__result'>
+                <tr id='binTable__result' onClick={result_click}>
                     { ary.map((d, i) => 
                         <td key={'result_' + i}>
                             { bin_at(result, i) }

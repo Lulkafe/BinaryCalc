@@ -38,6 +38,10 @@
     top: 236px
 }
 
+#binTable__result {
+    cursor: pointer;
+}
+
 #navi {
     margin: 0 auto;
     font-size: 24px;
