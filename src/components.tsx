@@ -189,26 +189,22 @@ function OutputNavi () {
         'navi__item navi__item__highlight' : 'navi__item';
     const createAction = (item) => 
         () => dispatch({type: actions.item.click, item});
-    const onClick_input1 = createAction(Item.Input1);
-    const onClick_input2 = createAction(Item.Input2);
-    const onClick_result = createAction(Item.Result);
-
 
     return (
         <nav id='navi'>
             <ul id='navi__item-list'>
                 <li key='item-input1' 
-                    onClick={onClick_input1}
+                    onClick={createAction(Item.Input1)}
                     className={getClass(Item.Input1)}>Input1
                 </li>
                 <li key='item-separator1'>|</li>
                 <li key='item-input2' 
-                    onClick={onClick_input2}
+                    onClick={createAction(Item.Input2)}
                     className={getClass(Item.Input2)}>Input2
                 </li>
                 <li key='item-separator2'>|</li>
                 <li key='item-result' 
-                    onClick={onClick_result}
+                    onClick={createAction(Item.Result)}
                     className={getClass(Item.Result)}>Result
                 </li>
             </ul>

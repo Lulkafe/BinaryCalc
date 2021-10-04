@@ -5,7 +5,7 @@ export const initState = {
     input2: 0,
     result: 0,
     bitwise: Bitwise.AND,
-    item: Item.Result
+    item: Item.Input1
 }
 
 export const actions = {

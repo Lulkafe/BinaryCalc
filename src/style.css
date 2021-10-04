@@ -69,8 +69,27 @@
     padding-right: 5px;
 }
 
+.output-bar__copy-btn {
+    width: 66px;
+    height: 53px;
+    font-size: 16px;
+    color: white;
+    background: #73B97A;
+
+}
+
 .output-bar__label {
+    padding-top: 13px;
+    padding-right: 4px;
     font-family: monospace;
+    font-size: 21px;
+}
+
+.output-bar__input {
+    width: 544px;
+    height: 53px;
+    outline: none;
+    font-size: 24px;
 }
 
 .output-bar__wrapper {
