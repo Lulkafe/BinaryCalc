@@ -197,12 +197,12 @@ function OutputNavi () {
                     onClick={createAction(Item.Input1)}
                     className={getClass(Item.Input1)}>Input1
                 </li>
-                <li key='item-separator1'>|</li>
+                <li key='item-separator1'>/</li>
                 <li key='item-input2' 
                     onClick={createAction(Item.Input2)}
                     className={getClass(Item.Input2)}>Input2
                 </li>
-                <li key='item-separator2'>|</li>
+                <li key='item-separator2'>/</li>
                 <li key='item-result' 
                     onClick={createAction(Item.Result)}
                     className={getClass(Item.Result)}>Result
@@ -214,6 +214,8 @@ function OutputNavi () {
 function OutputBars() {
 
     const { state } = useContext(CalcContext); 
+    const bin_at = (v, i) => (v >> (31 - i)) & 1;
+    
     let base_val: number = 0;
     let bin_val: string = '';
     let dec_val: string = '';
@@ -226,9 +228,19 @@ function OutputBars() {
     else if (state.item === Item.Result)
         base_val = state.result;
 
-    bin_val = base_val.toString(2);
     dec_val = base_val.toString(10);
     hex_val = base_val.toString(16);
+    
+    for (let i = 0; i < 32; i++) {
+        let bin = bin_at(base_val, i).toString();
+
+        //Remove unnecessary 0s at the head
+        //e.g. 0000001000 => 1000
+        if (bin_val === '' && bin === '0' && i != 31) 
+            continue;
+        
+        bin_val += bin;
+    }
 
     return (
         <div>
