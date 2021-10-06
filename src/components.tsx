@@ -45,7 +45,7 @@ function BinaryTable () {
     const { state, dispatch} = useContext(CalcContext);
     const { input1, input2, result } = state;
     const ary = [...new Array(32)];
-    const bin_at = (v, i) => (v >> (31 - i)) & 1;
+    const bin_at = (v, i) => (v >> i) & 1;
     const input1_click = (i) =>
         () => dispatch({ type: actions.bits.flip, item: Item.Input1, index: i });
     const input2_click = (i) =>
@@ -65,14 +65,14 @@ function BinaryTable () {
                     { ary.map((d, i) => 
                         <td onClick={input1_click(31 - i)} 
                             key={'input1_' + i}>
-                            {bin_at(input1, i)}
+                            {bin_at(input1, 31 - i)}
                         </td>)}
                 </tr>
                 <tr id='binTable__input2'>
                   { ary.map((d, i) => 
                         <td onClick={input2_click(31 - i)} 
                             key={'input2_' + i}>
-                            {bin_at(input2, i)}
+                            {bin_at(input2, 31 - i)}
                         </td>)}
                 </tr>
                 <tr>
@@ -83,7 +83,7 @@ function BinaryTable () {
                 <tr id='binTable__result' onClick={result_click}>
                     { ary.map((d, i) => 
                         <td key={'result_' + i}>
-                            { bin_at(result, i) }
+                            { bin_at(result, 31 - i) }
                         </td> )}
                 </tr>
             </tbody>
@@ -123,9 +123,12 @@ function UIButtons (props) {
 
 
 function UIButton (props) {
+
+    const { cname } = props;
+
     return (
         <button 
-            className='ui__button'
+            className={'ui__button' + ' ' + cname}
             onClick={props.onClick}>
             {props.text} 
         </button>
@@ -135,6 +138,8 @@ function UIButton (props) {
 
 function BitwiseButtons () {
     const { state, dispatch } = useContext(CalcContext);
+    const getClass = (bw: Bitwise) => state.bitwise === bw? 
+        'tgest' : 'ui__button__grayout'
     const createAction = (oper:Bitwise) => () => dispatch({
         type: actions.bitwise.change,
         value: oper
@@ -142,9 +147,15 @@ function BitwiseButtons () {
 
     return (
         <div id="ui__bitwise-buttons">
-            <UIButton text='AND' onClick={createAction(Bitwise.AND)}/>
-            <UIButton text='OR'  onClick={createAction(Bitwise.OR)} />
-            <UIButton text='XOR' onClick={createAction(Bitwise.XOR)}/>
+            <UIButton text='AND' 
+                cname={getClass(Bitwise.AND)}
+                onClick={createAction(Bitwise.AND)}/>
+            <UIButton text='OR'
+                cname={getClass(Bitwise.OR)}  
+                onClick={createAction(Bitwise.OR)} />
+            <UIButton text='XOR'
+                cname={getClass(Bitwise.XOR)} 
+                onClick={createAction(Bitwise.XOR)}/>
         </div>
     )
 }
@@ -173,7 +184,6 @@ function OutputSeparator () {
 }
 
 function OutputSection () {
-
     return (
         <div id='output-section'>
             <OutputNavi/>
@@ -183,7 +193,6 @@ function OutputSection () {
 }
 
 function OutputNavi () {
-
     const { state, dispatch } = useContext(CalcContext);
     const getClass = (item: Item) => state.item == item? 
         'navi__item navi__item__highlight' : 'navi__item';
@@ -211,10 +220,11 @@ function OutputNavi () {
         </nav>
     )
 }
+
 function OutputBars() {
 
     const { state } = useContext(CalcContext); 
-    const bin_at = (v, i) => (v >> (31 - i)) & 1;
+    const bin_at = (v, i) => (v >> i) & 1;
     
     let base_val: number = 0;
     let bin_val: string = '';
@@ -230,18 +240,18 @@ function OutputBars() {
 
     dec_val = base_val.toString(10);
     hex_val = base_val.toString(16);
-    
-    for (let i = 0; i < 32; i++) {
-        let bin = bin_at(base_val, i).toString();
 
-        //Remove unnecessary 0s at the head
+    for (let i = 0; i < 32; i++) {
+        let bin = bin_at(base_val, 31 - i).toString();
+
+        //Don't add unnecessary 0s at the beginning
         //e.g. 0000001000 => 1000
         if (bin_val === '' && bin === '0' && i != 31) 
             continue;
         
         bin_val += bin;
     }
-
+    
     return (
         <div>
             <OutputBar header='BIN:' value={bin_val} />
@@ -252,13 +262,12 @@ function OutputBars() {
 }
 
 function OutputBar(props) {
-    
-    const {header, value, onKeyUp }= props;
+    const {header, value }= props;
 
     return (
         <div className='output-bar__wrapper'>
             <label className='output-bar__label'>{header}</label>
-            <input className='output-bar__input' type="text" value={value} onChange={() => {}}/>  
+            <input className='output-bar__input' type="text" value={value} readOnly/>  
             <button className='output-bar__copy-btn' type="button">Copy</button>
         </div>
     )

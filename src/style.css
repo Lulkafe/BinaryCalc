@@ -100,14 +100,21 @@
 .ui__button {
     width: 73px;
     height: 43px;
+    border-radius: 7px;
 }
 
+
+
 #ui__bitwise-buttons {
-    display:inline-block
+    display:inline-block;
 }
 
 #ui__bit-mnp-buttons {
-    display:inline-block
+    display:inline-block;
+}
+
+.ui__button__grayout {
+    background: #BFBFBF;
 }
 
 .ui__button-wrapper {
