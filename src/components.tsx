@@ -139,7 +139,7 @@ function UIButton (props) {
 function BitwiseButtons () {
     const { state, dispatch } = useContext(CalcContext);
     const getClass = (bw: Bitwise) => state.bitwise === bw? 
-        'tgest' : 'ui__button__grayout'
+        '' : 'ui__button__grayout'
     const createAction = (oper:Bitwise) => () => dispatch({
         type: actions.bitwise.change,
         value: oper
