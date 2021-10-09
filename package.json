@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/Lulkafe/BinaryCalc#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-typescript": "^7.15.0",
     "@types/react": "^17.0.22",
     "@types/react-dom": "^17.0.9",
     "@webpack-cli/generators": "^2.3.0",
