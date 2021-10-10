@@ -240,18 +240,8 @@ function OutputBars() {
 
     dec_val = base_val.toString(10);
     hex_val = base_val.toString(16);
+    bin_val = (base_val >>> 0).toString(2);
 
-    for (let i = 0; i < 32; i++) {
-        let bin = bin_at(base_val, 31 - i).toString();
-
-        //Don't add unnecessary 0s at the beginning
-        //e.g. 0000001000 => 1000
-        if (bin_val === '' && bin === '0' && i != 31) 
-            continue;
-        
-        bin_val += bin;
-    }
-    
     return (
         <div>
             <OutputBar header='BIN:' value={bin_val} />

@@ -1,7 +1,7 @@
-import { NumBase } from './enum';
+import { Radix } from './enum';
 
 
-export default function convertUserInput (input: string, base: NumBase): number {
+export default function convertUserInput (input: string, base: Radix): number {
 
     if (typeof input !== 'string') 
         return 0;
@@ -17,13 +17,13 @@ export default function convertUserInput (input: string, base: NumBase): number 
     let result: number = 0;
 
     switch (base) {
-        case NumBase.BIN:
+        case Radix.BIN:
             result = convertBinIntoDec(input);
             break;
-        case NumBase.DEC:
+        case Radix.DEC:
             result = convertDecStrIntoDec(input);
             break;
-        case NumBase.HEX:
+        case Radix.HEX:
             result = convertHexIntoDec(input);
             break;
     }
@@ -34,7 +34,7 @@ export default function convertUserInput (input: string, base: NumBase): number 
 function convertDecStrIntoDec (input: string): number {
     const upper_limit = 2147483647;
     const lower_limit = -2147483648;
-    const re1 = /^-?(\d*\.)?\d+$/;
+    const re1 = /^-?(\d*)?\.\d+$/;
     const re2 = /^-?\d+$/;
     let result = 0;
 
@@ -46,7 +46,7 @@ function convertDecStrIntoDec (input: string): number {
     
     result = parseInt(input);
 
-    if (result > upper_limit)
+    if (result > upper_limit) 
         throw new Error('Value is too large');
 
     if (result < lower_limit)
@@ -56,18 +56,21 @@ function convertDecStrIntoDec (input: string): number {
 }
 
 function convertBinIntoDec (input: string): number {
-    const re = /^[01]{0,32}+$/;
+    const re = /^[01]{1,32}$/;
 
     if (input.length > 32) 
         throw new Error('Number of digits is over 32');
     
     if (!re.test(input))
         throw new Error('Invalid character(s) found');
-    
+
     return parseInt(input, 2);
 }
 
 function convertHexIntoDec (input: string): number {
+
+    //Allow user to input only a 32bit signed value
+    //Therefore, discard unsigned value such as 0xFFFFFFFF 
     const upper_limit = 0x7fffffff;
     const lower_limit = -0x80000000;
     const re = /^-?([A-F]|[0-9])+$/;
