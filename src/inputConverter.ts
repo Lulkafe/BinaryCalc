@@ -34,8 +34,8 @@ export default function convertUserInput (input: string, base: Radix): number {
 function convertDecStrIntoDec (input: string): number {
     const upper_limit = 2147483647;
     const lower_limit = -2147483648;
-    const re1 = /^-?(\d*)?\.\d+$/;
-    const re2 = /^-?\d+$/;
+    const re1 = /^[-+]?(\d*)?\.\d+$/;
+    const re2 = /^[-+]?\d+$/;
     let result = 0;
 
     if (re1.test(input))
@@ -50,7 +50,7 @@ function convertDecStrIntoDec (input: string): number {
         throw new Error('Value is too large');
 
     if (result < lower_limit)
-        throw new Error('value is too small');
+        throw new Error('Value is too small');
 
     return result;
 }
@@ -70,7 +70,7 @@ function convertBinIntoDec (input: string): number {
 function convertHexIntoDec (input: string): number {
 
     //Allow user to input only a 32bit signed value
-    //Therefore, discard unsigned value such as 0xFFFFFFFF 
+    //Therefore, discard unsigned values such as 0xFFFFFFFF 
     const upper_limit = 0x7fffffff;
     const lower_limit = -0x80000000;
     const re = /^-?([A-F]|[0-9])+$/;

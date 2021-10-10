@@ -1,13 +1,24 @@
 import convertUserStr from '../src/inputConverter';
 import { Radix } from '../src/enum';
 
-const convert = base => str => convertUserStr(str, base);
+const convert = radix => str => convertUserStr(str, radix);
+
+test('Convert valid but unsual inputs', () => {
+    const toDec = convert(Radix.DEC);
+
+    expect(toDec('-')).toBe(0);
+    expect((toDec(''))).toBe(0);
+    expect((toDec('      0        '))).toBe(0);
+    expect((toDec(undefined))).toBe(0);
+    expect((toDec(null))).toBe(0);
+})
 
 test('Convert DEC strings (Normal cases)', () => {
     const toDec = convert(Radix.DEC);
     
     expect(toDec('0')).toBe(0);
     expect(toDec('1')).toBe(1);
+    expect(toDec('+1')).toBe(1);
     expect(toDec('-1')).toBe(-1);
     expect(toDec('1234567')).toBe(1234567);
     expect(toDec('-1234567')).toBe(-1234567);
@@ -16,25 +27,50 @@ test('Convert DEC strings (Normal cases)', () => {
 });
 
 test('Convert BIN strings (Normal cases)', () => {
-    const toBin = convert(Radix.BIN);
+    const toDec = convert(Radix.BIN);
 
-    expect(toBin('0')).toBe(0);
-    expect(toBin('0001')).toBe(1);
-    expect(toBin('01111111111111111111111111111111')).toBe(2147483647);
+    expect(toDec('0')).toBe(0);
+    expect(toDec('0001')).toBe(1);
+    expect(toDec('01111111111111111111111111111111')).toBe(2147483647);
     expect('11111111111111111111111111111111').toBe((4294967295).toString(2));
-    expect(toBin('11111111111111111111111111111111')).toBe(4294967295);
+    expect(toDec('11111111111111111111111111111111')).toBe(4294967295);
     expect('10100100001000100101000000').toBe((43026752).toString(2));
-    expect(toBin('10100100001000100101000000')).toBe(43026752);
+    expect(toDec('10100100001000100101000000')).toBe(43026752);
 });
 
 test('Convert HEX strings (Normal cases)', () => {
-    const toHex = convert(Radix.HEX);
+    const toDec = convert(Radix.HEX);
 
-    expect(toHex('0')).toBe(0);
-    expect(toHex('-1')).toBe(-1);
-    expect(toHex('7fffffff')).toBe(2147483647);
-    expect(toHex('-80000000')).toBe(-2147483648);
-    expect(toHex('-78177900')).toBe(-2014804224);
-    expect(toHex('7eaa700')).toBe(132818688);
-    expect(toHex('6ae76f')).toBe(7006063);
+    expect(toDec('0')).toBe(0);
+    expect(toDec('-1')).toBe(-1);
+    expect(toDec('7fffffff')).toBe(2147483647);
+    expect(toDec('-80000000')).toBe(-2147483648);
+    expect(toDec('-78177900')).toBe(-2014804224);
+    expect(toDec('7eaa700')).toBe(132818688);
+    expect(toDec('6ae76f')).toBe(7006063);
 });
+
+test('Convert DEC strings (Error cases)', () => {
+    const toDec = convert(Radix.DEC);
+
+    expect(() => toDec('--1')).toThrowError();
+    expect(() => toDec('-1-')).toThrowError();
+    expect(() => toDec('UEFJA')).toThrowError();
+    expect(() => toDec('eiaj398v')).toThrowError();
+    expect(() => toDec('1DAE')).toThrowError();
+    expect(() => toDec('1 2 3 4')).toThrowError();
+    expect(() => toDec('58.08')).toThrowError();
+    expect(() => toDec('.05')).toThrowError();
+    expect(() => toDec('-.05')).toThrowError();
+    expect(() => toDec('2147483648')).toThrowError();
+    expect(() => toDec('-2147483649')).toThrowError();
+
+});
+
+test('Convert BIN strings (Error cases)', () => {
+
+})
+
+test('Convert HEX strings (Error cases)', () => {
+    
+})
