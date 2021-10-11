@@ -68,6 +68,16 @@ test('Convert DEC strings (Error cases)', () => {
 });
 
 test('Convert BIN strings (Error cases)', () => {
+    const toDec = convert(Radix.BIN);
+
+    expect(() => toDec('0121011110')).toThrowError();
+    expect(() => toDec('-011111101')).toThrowError();
+    expect(() => toDec('00101-')).toThrowError();
+    expect(() => toDec('16AE')).toThrowError();
+    expect(() => toDec('01101.1011')).toThrowError();
+    expect(() => toDec('0 00 00 0 1')).toThrowError();
+    expect(() => toDec('111111111111111111111111111111111')).toThrowError();
+    expect(() => toDec('000000000000000000000000000000000')).toThrowError();
 
 })
 
