@@ -263,7 +263,43 @@ function OutputBar(props) {
     )
 }
 
+function UserInputSection () {
+    return (
+        <div id='user-input__container'>
+            <RadixSelector />
+            <UserInputBar />
+            <ValidationMassage />
+        </div>
+    )
+}
 
+function RadixSelector () {
+    return (
+        <div>
+            <ol>
+                <li>BIN</li>
+                <li>/</li>
+                <li>DEC</li>
+                <li>/</li>
+                <li>HEX</li>
+            </ol>
+        </div>
+    )
+}
+
+function UserInputBar () {
+
+    return (
+        <div className='user-input__bar-wrapper'>
+            <input className='user-input__bar' type="text"/>  
+            <button className='user-input__enter-btn' type="button">Enter</button>
+        </div>
+    )
+}
+
+function ValidationMassage (prop) {
+    return <p id='user-input__validation-msg'>{prop.massage}</p>
+}
 
 
 
