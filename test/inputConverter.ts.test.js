@@ -82,5 +82,14 @@ test('Convert BIN strings (Error cases)', () => {
 })
 
 test('Convert HEX strings (Error cases)', () => {
-    
+    const toDec = convert(Radix.HEX);
+
+    expect(() => toDec('109G23AB')).toThrowError();
+    expect(() => toDec('10A 98CD')).toThrowError();
+    expect(() => toDec('--101')).toThrowError();
+    expect(() => toDec('1-1-1')).toThrowError();
+    expect(() => toDec('FFFFFFFF')).toThrowError();
+    expect(() => toDec('FFFFFFFFFF')).toThrowError();
+    expect(() => toDec('-FFFFFFFF')).toThrowError();
+
 })
