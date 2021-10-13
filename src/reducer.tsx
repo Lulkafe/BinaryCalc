@@ -5,7 +5,8 @@ export const initState = {
     input2: 0,
     result: 0,
     bitwise: Bitwise.AND,
-    item: Item.Input1
+    item: Item.Input1,
+    validation_massage: ''
 }
 
 export const actions = {
@@ -147,6 +148,9 @@ export const bitReducer = (state, action) => {
                 ...state,
                 item: action.item
             }
+
+        case actions.input.update:
+            return state;
                 
     }
 

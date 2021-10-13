@@ -19,6 +19,7 @@ export default function BitCalc () {
                     <UIButtons />
                     <OutputSeparator />
                     <OutputSection />
+                    <UserInputSection />
                 </Window>    
             </CalcContext.Provider>
         </div>
@@ -264,11 +265,14 @@ function OutputBar(props) {
 }
 
 function UserInputSection () {
+
+    const { state } = useContext(CalcContext);
+
     return (
         <div id='user-input__container'>
             <RadixSelector />
             <UserInputBar />
-            <ValidationMassage />
+            <ValidationMassage massage={state.validation_massage}/>
         </div>
     )
 }
@@ -276,7 +280,7 @@ function UserInputSection () {
 function RadixSelector () {
     return (
         <div>
-            <ol>
+            <ol id='user-input__radix-list'>
                 <li>BIN</li>
                 <li>/</li>
                 <li>DEC</li>
@@ -289,9 +293,11 @@ function RadixSelector () {
 
 function UserInputBar () {
 
+    const { dispatch } = useContext(CalcContext);
+
     return (
         <div className='user-input__bar-wrapper'>
-            <input className='user-input__bar' type="text"/>  
+            <input className='user-input__bar' type="text" placeholder='You can enter your value through here'/>  
             <button className='user-input__enter-btn' type="button">Enter</button>
         </div>
     )
