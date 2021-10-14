@@ -1,4 +1,5 @@
-import { Bitwise, Item } from './enum';
+import { Bitwise, Item, Radix} from './enum';
+import convertUserInput from './inputConverter';
 
 export const initState = {
     input1: 0,
@@ -6,6 +7,7 @@ export const initState = {
     result: 0,
     bitwise: Bitwise.AND,
     item: Item.Input1,
+    radix_for_input: Radix.DEC,
     validation_massage: ''
 }
 
@@ -150,8 +152,21 @@ export const bitReducer = (state, action) => {
             }
 
         case actions.input.update:
-            return state;
+
+            try {
+                const value: string = action.value.toString();
+                const radix: Radix = state.radix_for_input;
+                const new_val = convertUserInput(value, radix);
+
+                if (state.item === Item.Input1)
+                    return { ...state, input1: new_val };
+                else                
+                    return { ...state, input2: new_val };
                 
+            } catch (e) {
+                return { ...state, validation_message: e.message };
+            }
+
     }
 
     return state;

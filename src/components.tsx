@@ -294,11 +294,15 @@ function RadixSelector () {
 function UserInputBar () {
 
     const { dispatch } = useContext(CalcContext);
+    const onClick = () => {
+        const value = (document.getElementById('user-input__bar') as HTMLInputElement).value;
+        dispatch({ type: actions.input.update, value });
+    }
 
     return (
         <div className='user-input__bar-wrapper'>
-            <input className='user-input__bar' type="text" placeholder='You can enter your value through here'/>  
-            <button className='user-input__enter-btn' type="button">Enter</button>
+            <input id='user-input__bar' type="text" placeholder='You can enter your value through here'/>  
+            <button className='user-input__enter-btn' type="button" onClick={onClick}>Enter</button>
         </div>
     )
 }
