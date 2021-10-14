@@ -8,7 +8,7 @@ export const initState = {
     bitwise: Bitwise.AND,
     item: Item.Input1,
     radix_for_input: Radix.DEC,
-    validation_massage: ''
+    validation_message: 'Initial Input'
 }
 
 export const actions = {
@@ -157,6 +157,7 @@ export const bitReducer = (state, action) => {
                 const value: string = action.value.toString();
                 const radix: Radix = state.radix_for_input;
                 const new_val = convertUserInput(value, radix);
+              
 
                 if (state.item === Item.Input1)
                     return { ...state, input1: new_val };

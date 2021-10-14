@@ -272,7 +272,7 @@ function UserInputSection () {
         <div id='user-input__container'>
             <RadixSelector />
             <UserInputBar />
-            <ValidationMassage massage={state.validation_massage}/>
+            <ValidationMassage message={state.validation_message}/>
         </div>
     )
 }
@@ -308,7 +308,7 @@ function UserInputBar () {
 }
 
 function ValidationMassage (prop) {
-    return <p id='user-input__validation-msg'>{prop.massage}</p>
+    return <p id='user-input__validation-msg'>{prop.message}</p>
 }
 
 
