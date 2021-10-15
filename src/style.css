@@ -159,6 +159,14 @@
     padding-right: 5px;
 }
 
+.user-input__radix-item {
+    cursor: pointer;
+}
+
+.user-input__radix-item__grayedout {
+    color: #B0AEAE
+}
+
 #user-input__validation-msg {
     color: white; /* TODO: should be adjusted later*/
     text-align: center;

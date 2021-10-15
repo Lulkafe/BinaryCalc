@@ -1,7 +1,7 @@
 import React from 'react';
 import { useReducer, useContext } from 'react';
 import { bitReducer, initState, actions } from './reducer';
-import { Item, Bitwise } from './enum';
+import { Item, Bitwise, Radix } from './enum';
 
 
 const CalcContext = React.createContext(undefined);
@@ -278,14 +278,24 @@ function UserInputSection () {
 }
 
 function RadixSelector () {
+
+    const { state, dispatch } = useContext(CalcContext);
+    const radix_for_input = state.radix_for_input;
+    const cmnCls = 'user-input__radix-item';
+    const getClass = (radix: Radix) => radix === radix_for_input? 
+        cmnCls : cmnCls + ' user-input__radix-item__grayedout';
+    const onClick = (radix) => () => {
+        dispatch({type: actions.radix.change, value: radix });
+    }
+
     return (
         <div>
             <ol id='user-input__radix-list'>
-                <li>BIN</li>
+                <li className={getClass(Radix.BIN)} onClick={onClick(Radix.BIN)}>BIN</li>
                 <li>/</li>
-                <li>DEC</li>
+                <li className={getClass(Radix.DEC)} onClick={onClick(Radix.DEC)}>DEC</li>
                 <li>/</li>
-                <li>HEX</li>
+                <li className={getClass(Radix.HEX)} onClick={onClick(Radix.HEX)}>HEX</li>
             </ol>
         </div>
     )

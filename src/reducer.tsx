@@ -28,6 +28,9 @@ export const actions = {
     }, 
     input: {
         update: 'User gave an input value'
+    },
+    radix: {
+        change: 'User selected a radix for user input'
     }
 }
 
@@ -167,6 +170,9 @@ export const bitReducer = (state, action) => {
             } catch (e) {
                 return { ...state, validation_message: e.message };
             }
+
+        case actions.radix.change:
+            return { ...state, radix_for_input: action.value };
 
     }
 
