@@ -226,9 +226,7 @@ function OutputNavi () {
 
 function OutputBars() {
 
-    const { state } = useContext(CalcContext); 
-    const bin_at = (v, i) => (v >> i) & 1;
-    
+    const { state } = useContext(CalcContext);     
     let base_val: number = 0;
     let bin_val: string = '';
     let dec_val: string = '';
@@ -260,11 +258,11 @@ function OutputBar(props) {
     return (
         <div className='output-bar__wrapper'>
             <label className='output-bar__label'>{header}</label>
-            <input className='output-bar__input' type="text" value={value} readOnly/>  
-            <button className='output-bar__copy-btn' type="button">Copy</button>
+            <input className='output-bar__input' type="text" value={value} readOnly/>
         </div>
     )
 }
+
 
 function UserInputSection () {
 
