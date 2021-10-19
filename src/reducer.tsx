@@ -8,7 +8,7 @@ export const initState = {
     bitwise: Bitwise.AND,
     item: Item.Input1,
     radix_for_input: Radix.DEC,
-    validation_message: 'Initial Input'
+    validation_message: ''
 }
 
 export const actions = {
@@ -16,6 +16,7 @@ export const actions = {
         flip: 'Update a bit',
         shift_left: 'Left shift',
         shift_right: 'Right shift',
+        not: 'Apply NOT to bits',
         clear: 'Clear all bits',
         all1s: 'Make all bits 1'
     },
@@ -100,6 +101,21 @@ export const bitReducer = (state, action) => {
                     input2: input2 >> 1,
                     result: calculateResult(input1, input2 >> 1)
                 }
+            break;
+
+        case actions.bits.not:
+            if (state.item === Item.Input1)
+                return {
+                    ...state,
+                    input1: ~input1,
+                    result: calculateResult(~input1, input2)
+                }
+            if (state.item === Item.Input2)
+                return {
+                    ...state,
+                    input2: ~input2,
+                    result: calculateResult(input1, ~input2)
+                }            
             break;
         
         case actions.bits.clear:

@@ -170,6 +170,8 @@ function BitMnpButtngs () {
                 dispatch({ type: actions.bits.shift_left})}/>
             <UIButton text='>>' onClick={() => 
                 dispatch({ type: actions.bits.shift_right})}/>
+            <UIButton text='NOT' onClick={() => 
+                dispatch({ type: actions.bits.not})}/>
             <UIButton text='All 1s' onClick={() => 
                 dispatch({ type: actions.bits.all1s})}/>
             <UIButton text='Clear' onClick={() => 
@@ -304,6 +306,7 @@ function RadixSelector () {
 function UserInputBar () {
 
     const { dispatch } = useContext(CalcContext);
+    const placeholder = 'You can enter your value through here';
     const onClick = () => {
         const value = (document.getElementById('user-input__bar') as HTMLInputElement).value;
         dispatch({ type: actions.input.update, value });
@@ -311,7 +314,7 @@ function UserInputBar () {
 
     return (
         <div className='user-input__bar-wrapper'>
-            <input id='user-input__bar' type="text" placeholder='You can enter your value through here'/>  
+            <input id='user-input__bar' type="text" placeholder={placeholder}/>  
             <button className='user-input__enter-btn' type="button" onClick={onClick}>Enter</button>
         </div>
     )

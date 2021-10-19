@@ -1,6 +1,6 @@
 import { render } from 'react-dom';
 import React from 'react';
-import BitCalc from './components';
+import App from './components';
 import './style.css';
 
-render(<BitCalc />, document.getElementById('root'))
+render(<App/>, document.getElementById('root'))

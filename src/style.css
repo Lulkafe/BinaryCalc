@@ -168,8 +168,9 @@
 }
 
 #user-input__validation-msg {
-    color: white; /* TODO: should be adjusted later*/
+    color: red; /* TODO: should be adjusted later*/
     text-align: center;
+    min-height: 20px;
 }
 
 #window {
