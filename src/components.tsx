@@ -231,6 +231,9 @@ function OutputBars() {
     let bin_val: string = '';
     let dec_val: string = '';
     let hex_val: string = '';
+    const onClick = (val) => () => {
+        navigator.clipboard.writeText(val);
+    }
 
     if (state.item === Item.Input1)
         base_val = state.input1;
@@ -245,20 +248,21 @@ function OutputBars() {
 
     return (
         <div>
-            <OutputBar header='BIN:' value={bin_val} />
-            <OutputBar header='DEC:' value={dec_val} />
-            <OutputBar header='HEX:' value={hex_val} />
+            <OutputBar header='BIN:' value={bin_val} onClick={onClick(bin_val)}/>
+            <OutputBar header='DEC:' value={dec_val} onClick={onClick(dec_val)}/>
+            <OutputBar header='HEX:' value={hex_val} onClick={onClick(hex_val)}/>
         </div>
     )
 }
 
 function OutputBar(props) {
-    const {header, value }= props;
+    const {header, value, id, onClick }= props;
 
     return (
         <div className='output-bar__wrapper'>
             <label className='output-bar__label'>{header}</label>
-            <input className='output-bar__input' type="text" value={value} readOnly/>
+            <input className='output-bar__input' id={id} type="text" value={value} readOnly/>  
+            <button className='output-bar__copy-btn' type="button" onClick={onClick}>Copy</button>
         </div>
     )
 }
