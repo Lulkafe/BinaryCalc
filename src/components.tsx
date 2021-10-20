@@ -29,9 +29,20 @@ export default function BitCalc () {
 
 //******* COMPONENTS FOR WINDOW (WRAPPER) *******
 function Window (props) {
+
+    const { dispatch } = useContext(CalcContext);
+
+    const onClick = () => {
+        const requestedReset = confirm('Do you want to reset all values?');
+        if (requestedReset)
+            dispatch({ type: actions.reset });
+    }
+
     return (
         <div id='window'>
-            <div id='window__menubar'></div>
+            <div id='window__menubar'>
+                <button id='window__menubar-button' type='button' onClick={onClick}></button>
+            </div>
             <div id='window__content-wrapper'>
                 {props.children}
             </div> 
