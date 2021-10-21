@@ -66,8 +66,8 @@
 
 #navi__item-list li {
     display: inline-block;
-    padding-left: 5px;
-    padding-right: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .output-bar__copy-btn {
@@ -76,6 +76,7 @@
     font-size: 16px;
     color: white;
     background: #73B97A;
+    border-radius: 3px;
 
 }
 
@@ -139,12 +140,21 @@
     height: 53px;
     font-size: 16px;
     color: white;
-    background: #73B97A;
+    border-radius: 3px;
+    background: #8EBEE1;
+    cursor: pointer;
+}
+
+.user-input__enter-btn__disabled {
+    opacity: 73%;
+    cursor: auto;
 }
 
 .user-input__bar-wrapper {
-    text-align: center;
+    justify-content: center;
     margin-left: 47px;
+    display: flex;
+    vertical-align: middle;
 }
 
 #user-input__radix-list {
@@ -155,16 +165,18 @@
 
 #user-input__radix-list li {
     display: inline-block;
-    padding-left: 5px;
-    padding-right: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .user-input__radix-item {
     cursor: pointer;
+    color: #B0AEAE;
 }
 
-.user-input__radix-item__grayedout {
-    color: #B0AEAE
+.user-input__radix-item__highlight {
+    color: white;
+    border-bottom: 3px solid #8EBEE1;
 }
 
 #user-input__validation-msg {

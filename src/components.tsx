@@ -17,7 +17,7 @@ export default function BitCalc () {
                     <HighlightBar />
                     <BinaryTable />
                     <UIButtons />
-                    <OutputSeparator />
+                    <hr />
                     <OutputSection />
                     <UserInputSection />
                 </Window>    
@@ -33,8 +33,7 @@ function Window (props) {
     const { dispatch } = useContext(CalcContext);
 
     const onClick = () => {
-        const requestedReset = confirm('Do you want to reset all values?');
-        if (requestedReset)
+        if (confirm('Do you want to reset all values?'))
             dispatch({ type: actions.reset });
     }
 
@@ -193,10 +192,6 @@ function BitMnpButtngs () {
 
 
 //******* COMPONENTS FOR OUPUT SECTION *******
-function OutputSeparator () {
-    return <div><hr/></div>
-}
-
 function OutputSection () {
     return (
         <div id='output-section'>
@@ -292,13 +287,14 @@ function UserInputSection () {
     )
 }
 
+
 function RadixSelector () {
 
     const { state, dispatch } = useContext(CalcContext);
     const radix_for_input = state.radix_for_input;
-    const cmnCls = 'user-input__radix-item';
+    const cls = 'user-input__radix-item';
     const getClass = (radix: Radix) => radix === radix_for_input? 
-        cmnCls : cmnCls + ' user-input__radix-item__grayedout';
+        cls + ' user-input__radix-item__highlight' : cls;
     const onClick = (radix) => () => {
         dispatch({type: actions.radix.change, value: radix });
     }
@@ -318,17 +314,22 @@ function RadixSelector () {
 
 function UserInputBar () {
 
-    const { dispatch } = useContext(CalcContext);
+    const { dispatch, state } = useContext(CalcContext);
     const placeholder = 'You can enter your value through here';
+    const disabled = state.item === Item.Result;
     const onClick = () => {
         const value = (document.getElementById('user-input__bar') as HTMLInputElement).value;
         dispatch({ type: actions.input.update, value });
     }
+    const btnCls = 'user-input__enter-btn' + 
+        ((disabled)? ' user-input__enter-btn__disabled' : '');
 
     return (
         <div className='user-input__bar-wrapper'>
-            <input id='user-input__bar' type="text" placeholder={placeholder}/>  
-            <button className='user-input__enter-btn' type="button" onClick={onClick}>Enter</button>
+            <input id='user-input__bar' type="text" 
+                placeholder={placeholder} disabled={disabled}/>  
+            <button className={btnCls} type="button" 
+                onClick={onClick} disabled={disabled}>Enter</button>
         </div>
     )
 }
