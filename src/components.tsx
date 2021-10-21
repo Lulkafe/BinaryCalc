@@ -135,12 +135,13 @@ function UIButtons (props) {
 
 function UIButton (props) {
 
-    const { cname } = props;
+    const { cname, disabled } = props;
 
     return (
         <button 
             className={'ui__button' + ' ' + cname}
-            onClick={props.onClick}>
+            onClick={props.onClick}
+            disabled={disabled}>
             {props.text} 
         </button>
     );
@@ -171,21 +172,34 @@ function BitwiseButtons () {
     )
 }
 
+
 function BitMnpButtngs () {
     const { state, dispatch } = useContext(CalcContext);
+    const disabled = state.item === Item.Result;
+    const cname = (disabled)? 'ui__bit-mnp-button__disabled' : '';
 
     return (
         <div id="ui__bit-mnp-buttons">
-            <UIButton text='<<' onClick={() => 
-                dispatch({ type: actions.bits.shift_left})}/>
-            <UIButton text='>>' onClick={() => 
-                dispatch({ type: actions.bits.shift_right})}/>
-            <UIButton text='NOT' onClick={() => 
-                dispatch({ type: actions.bits.not})}/>
-            <UIButton text='All 1s' onClick={() => 
-                dispatch({ type: actions.bits.all1s})}/>
-            <UIButton text='Clear' onClick={() => 
-                dispatch({ type: actions.bits.clear})}/>
+            <UIButton text='<<' 
+                disabled={disabled} 
+                cname={cname}
+                onClick={() => dispatch({ type: actions.bits.shift_left})}/>
+            <UIButton text='>>' 
+                disabled={disabled} 
+                cname={cname}
+                onClick={() => dispatch({ type: actions.bits.shift_right})}/>
+            <UIButton text='NOT' 
+                disabled={disabled} 
+                cname={cname}
+                onClick={() => dispatch({ type: actions.bits.not})}/>
+            <UIButton text='All 1s' 
+                disabled={disabled} 
+                cname={cname}
+                onClick={() => dispatch({ type: actions.bits.all1s})}/>
+            <UIButton text='Clear' 
+                disabled={disabled} 
+                cname={cname}
+                onClick={() => dispatch({ type: actions.bits.clear})}/>
         </div>
     )
 }
