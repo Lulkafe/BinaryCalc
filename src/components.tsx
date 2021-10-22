@@ -297,6 +297,7 @@ function UserInputSection () {
             <RadixSelector />
             <UserInputBar />
             <ValidationMassage message={state.validation_message}/>
+
         </div>
     )
 }
@@ -361,7 +362,13 @@ function UserInputBar () {
 }
 
 function ValidationMassage (prop) {
-    return <p id='user-input__validation-msg'>{prop.message}</p>
+    return (
+        <div id='user-input__validation-msg-wrapper'> 
+            <p id='user-input__validation-msg'>
+                {prop.message}
+            </p>
+        </div>
+    )
 }
 
 

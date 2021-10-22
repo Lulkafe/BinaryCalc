@@ -26,15 +26,15 @@
 }
 
 .binTable__highlight-bar__input1 {
-    top: 129px;
+    top: 100px;
 }
 
 .binTable__highlight-bar__input2 {
-    top: 173px;
+    top: 144px;
 }
 
 .binTable__highlight-bar__result {
-    top: 236px
+    top: 207px
 }
 
 #binTable__result {
@@ -179,6 +179,7 @@
 .user-input__radix-item {
     cursor: pointer;
     color: #B0AEAE;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .user-input__radix-item__highlight {
@@ -187,9 +188,17 @@
 }
 
 #user-input__validation-msg {
-    color: red; /* TODO: should be adjusted later*/
+    color: #ff0000; /* TODO: should be adjusted later*/
+    font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    min-height: 20px;
+    font-size: 20px;
+    min-height: 25px;
+    margin-top: 3px;
+}
+
+#user-input__validation-msg-wrapper {
+    margin-left: 104px;
+    width: 610px;
 }
 
 #window {
@@ -203,7 +212,7 @@
 }
 
 #window__content-wrapper {
-    padding: 40px;
+    padding: 10px 40px 10px 40px;
 }
 
 #window__menubar {
