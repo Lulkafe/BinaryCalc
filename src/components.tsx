@@ -33,7 +33,7 @@ function Window (props) {
     const { dispatch } = useContext(CalcContext);
 
     const onClick = () => {
-        if (confirm('Do you want to reset all values?'))
+        if (confirm('Do you want to reset?'))
             dispatch({ type: actions.reset });
     }
 
@@ -311,6 +311,11 @@ function RadixSelector () {
         cls + ' user-input__radix-item__highlight' : cls;
     const onClick = (radix) => () => {
         dispatch({type: actions.radix.change, value: radix });
+
+        const value = (document.getElementById
+            ('user-input__bar') as HTMLInputElement).value; 
+
+        dispatch({type: actions.input.validate, value });
     }
 
     return (
@@ -331,8 +336,14 @@ function UserInputBar () {
     const { dispatch, state } = useContext(CalcContext);
     const placeholder = 'You can enter your value through here';
     const disabled = state.item === Item.Result;
+    const getInputValue = () => 
+        (document.getElementById('user-input__bar') as HTMLInputElement).value; 
+    const onInput = () => { 
+        const value = getInputValue();
+        dispatch({ type: actions.input.validate, value })
+    };
     const onClick = () => {
-        const value = (document.getElementById('user-input__bar') as HTMLInputElement).value;
+        const value = getInputValue();
         dispatch({ type: actions.input.update, value });
     }
     const btnCls = 'user-input__enter-btn' + 
@@ -341,6 +352,7 @@ function UserInputBar () {
     return (
         <div className='user-input__bar-wrapper'>
             <input id='user-input__bar' type="text" 
+                onInput={onInput}                
                 placeholder={placeholder} disabled={disabled}/>  
             <button className={btnCls} type="button" 
                 onClick={onClick} disabled={disabled}>Enter</button>

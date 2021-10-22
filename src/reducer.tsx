@@ -28,7 +28,8 @@ export const actions = {
         update: 'Update a tab item'
     }, 
     input: {
-        update: 'User gave an input value'
+        update: 'User gave an input value',
+        validate: 'Validate user input before it is submitted'
     },
     radix: {
         change: 'User selected a radix for user input'
@@ -172,24 +173,44 @@ export const bitReducer = (state, action) => {
             }
 
         case actions.input.update:
+        case actions.input.validate:
 
             try {
                 const value: string = action.value.toString();
                 const radix: Radix = state.radix_for_input;
                 const new_val = convertUserInput(value, radix);
               
+                if (action.type === actions.input.validate)
+                    return {
+                        ...state,
+                        validation_message: ''
+                    }
 
                 if (state.item === Item.Input1)
-                    return { ...state, input1: new_val };
+                    return { 
+                        ...state, 
+                        input1: new_val, 
+                        validation_message: '' 
+                    };
                 else                
-                    return { ...state, input2: new_val };
+                    return { 
+                        ...state, 
+                        input2: new_val,
+                        validation_message: '' 
+                    };
                 
             } catch (e) {
-                return { ...state, validation_message: e.message };
+                return { 
+                    ...state, 
+                    validation_message: e.message 
+                };
             }
 
         case actions.radix.change:
-            return { ...state, radix_for_input: action.value };
+            return { 
+                ...state, 
+                radix_for_input: action.value 
+            };
 
         case actions.reset:
             return initState;

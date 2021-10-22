@@ -105,6 +105,7 @@
     width: 73px;
     height: 43px;
     border-radius: 7px;
+    cursor: pointer;
 }
 
 #ui__bitwise-buttons {
@@ -117,6 +118,7 @@
 
 .ui__bit-mnp-button__disabled {
     background: #BFBFBF;
+    cursor: auto;
 }
 
 .ui__button__grayout {
