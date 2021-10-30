@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+:root {
+    --accent-color: #E8974A;
+    --hl-top: 100px;
+}
+
 #binTable {
     text-align: center;
     font-family: monospace;
@@ -19,22 +24,22 @@
 
 .binTable__highlight-bar {
     position: absolute;
-    background: #E8974A;
+    background: var(--accent-color);
     width: 8px;
     height: 40px;
     left: 29px;
 }
 
 .binTable__highlight-bar__input1 {
-    top: 100px;
+    top: var(--hl-top);
 }
 
 .binTable__highlight-bar__input2 {
-    top: 144px;
+    top: calc(var(--hl-top) + 44px);
 }
 
 .binTable__highlight-bar__result {
-    top: 207px
+    top: calc(var(--hl-top) + 107px);
 }
 
 #binTable__result {
@@ -55,7 +60,7 @@
 
 .navi__item__highlight {
     color: white;
-    border-bottom: 5px solid #E8974A;
+    border-bottom: 5px solid var(--accent-color);
 }
 
 #navi__item-list {
@@ -73,7 +78,7 @@
 .output-bar__copy-btn {
     width: 66px;
     height: 53px;
-    font-size: 16px;
+    font-size: 18px;
     color: white;
     background: #73B97A;
     border-radius: 3px;
@@ -102,6 +107,12 @@
 }
 
 .ui__button {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background-color: #F3F3F3;
+    border: 1px solid #979797;
+    font-size: 17px;
     width: 73px;
     height: 43px;
     border-radius: 7px;
@@ -145,7 +156,7 @@
 .user-input__enter-btn {
     width: 66px;
     height: 53px;
-    font-size: 16px;
+    font-size: 18px;
     color: white;
     border-radius: 3px;
     background: #8EBEE1;
@@ -178,6 +189,7 @@
 
 .user-input__radix-item {
     cursor: pointer;
+    font-size: 20px;
     color: #B0AEAE;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -227,6 +239,6 @@
     border-radius: 22px;
     height: 22px;
     width: 22px;
-    background-color: #E8974A;
+    background-color: var(--accent-color);
     cursor: pointer;
 }

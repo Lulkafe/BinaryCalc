@@ -115,9 +115,7 @@ function HighlightBar () {
     else if (item === Item.Result)
         cls += 'result'
 
-    return (
-        <div className={cls}></div>
-    )
+    return <div className={cls}></div>
 }
 
 
@@ -139,7 +137,8 @@ function UIButton (props) {
 
     return (
         <button 
-            className={'ui__button' + ' ' + cname}
+            className={'ui__button ' + cname}
+            type='button'
             onClick={props.onClick}
             disabled={disabled}>
             {props.text} 
@@ -263,7 +262,7 @@ function OutputBars() {
         base_val = state.result;
 
     dec_val = base_val.toString(10);
-    hex_val = base_val.toString(16);
+    hex_val = base_val.toString(16).toUpperCase();
     bin_val = (base_val >>> 0).toString(2);
 
     return (
