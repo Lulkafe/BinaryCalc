@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+html {
+    background: rgb(65,65,63);
+    background: linear-gradient(83deg, rgba(65,65,63,1) 0%, rgba(80,65,41,1) 61%, rgba(86,85,85,1) 100%);
+}
+
 :root {
     --accent-color: #E8974A;
     --hl-top: 100px;
@@ -221,6 +226,8 @@
     color: white;
     background: #282b28;
     position: relative;
+
+    border: 1px solid #979797
 }
 
 #window__content-wrapper {
@@ -241,4 +248,5 @@
     width: 22px;
     background-color: var(--accent-color);
     cursor: pointer;
+    border: 1px solid #67725C;
 }
