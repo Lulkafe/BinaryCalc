@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-html {
+body {
     background: rgb(65,65,63);
     background: linear-gradient(83deg, rgba(65,65,63,1) 0%, rgba(80,65,41,1) 61%, rgba(86,85,85,1) 100%);
 }
@@ -10,6 +10,15 @@ html {
 :root {
     --accent-color: #E8974A;
     --hl-top: 100px;
+}
+
+#app-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: scroll;
 }
 
 #binTable {
@@ -148,7 +157,7 @@ html {
 }
 
 .ui__bit-mnp-button__disabled {
-    background: #BFBFBF;
+    background: #d2d1d1;
     cursor: auto;
 }
 
@@ -244,14 +253,12 @@ html {
 }
 
 #window {
-    min-width: 860px;
-    min-height: 820px;
-    width: 820px;
+    height: 760px;
+    width: 850px;
     margin: 0 auto;
     color: white;
     background: #282b28;
     position: relative;
-
     border: 1px solid #979797
 }
 

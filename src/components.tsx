@@ -11,7 +11,7 @@ export default function BitCalc () {
     const [ state, dispatch ] = useReducer(bitReducer, initState);
 
     return (
-        <div>
+        <div id='app-container'>
             <CalcContext.Provider value={{state, dispatch}}>
                 <Window>
                     <HighlightBar />
