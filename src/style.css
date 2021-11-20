@@ -86,9 +86,14 @@ html {
     font-size: 18px;
     color: white;
     background: #73B97A;
-    border-radius: 3px;
+    border-radius: 2px;
+    border: 1px solid #787777;
     cursor: pointer;
 
+}
+
+.output-bar__copy-btn:hover {
+    opacity: 85%;
 }
 
 .output-bar__label {
@@ -104,6 +109,7 @@ html {
     outline: none;
     font-size: 24px;
     padding-left: 10px;
+    border: 1px solid #787777
 }
 
 .output-bar__wrapper {
@@ -120,8 +126,17 @@ html {
     font-size: 17px;
     width: 73px;
     height: 43px;
-    border-radius: 7px;
+    border-radius: 3px;
     cursor: pointer;
+    margin-left: 2px;
+}
+
+.ui__button:hover {
+    outline: 2px solid rgb(170, 206, 69);
+}
+
+.ui__button:active {
+    opacity: 70%;
 }
 
 #ui__bitwise-buttons {
@@ -152,6 +167,7 @@ html {
     outline: none;
     font-size: 24px;
     padding-left: 10px;
+    border: 1px solid #787777
 }
 
 #user-input__container {
@@ -163,9 +179,18 @@ html {
     height: 53px;
     font-size: 18px;
     color: white;
-    border-radius: 3px;
+    border-radius: 2px;
     background: #8EBEE1;
     cursor: pointer;
+    border: 1px solid #787777
+}
+
+.user-input__enter-btn:hover {
+    opacity: 85%;
+}
+
+.user-input__enter-btn:active {
+    opacity: 70%;
 }
 
 .user-input__enter-btn__disabled {
