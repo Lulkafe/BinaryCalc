@@ -3,6 +3,7 @@
 }
 
 body {
+    margin: 0;
     background: rgb(65,65,63);
     background: linear-gradient(83deg, rgba(65,65,63,1) 0%, rgba(80,65,41,1) 61%, rgba(86,85,85,1) 100%);
 }
@@ -27,6 +28,7 @@ body {
     padding: 30px 0 30px 0;
     overflow: hidden;
 }
+
 
 #binTable-wrapper {
     width: 100%;
@@ -86,6 +88,7 @@ body {
     list-style-type: none;
     display: flex;
     justify-content: center;
+    padding: 0;
 }
 
 #navi__item-list li {
@@ -112,9 +115,11 @@ body {
 
 .output-bar__label {
     padding-top: 13px;
-    padding-right: 4px;
+    padding-right: 10px;
     font-family: monospace;
     font-size: 21px;
+    width: 72px;
+    text-align: right;
 }
 
 .output-bar__input {
@@ -185,7 +190,7 @@ body {
 }
 
 #user-input__container {
-    margin-top: 50px;
+    margin-top: 0px;
 }
 
 .user-input__enter-btn {
@@ -214,15 +219,43 @@ body {
 
 .user-input__bar-wrapper {
     justify-content: center;
-    margin-left: 47px;
     display: flex;
     vertical-align: middle;
+    cursor: pointer;
+}
+
+#user-input__radix-select {
+    -webkit-appearance: none;
+    appearance: none;
+    font-size: 21px;
+    font-family: monospace;
+    padding-left: 23px;
+    width: 70px;
+    height: 51px;
+    position: relative;
+    color: rgb(142, 190, 225);
+    background: transparent;
+    border: none;
+}
+
+#user-input__radix-select-arrow {
+    position: absolute;
+    left: 5px;
+    top: 17px;
+    font-size:19px;
+    color: rgb(142, 190, 225);
+}
+
+#user-input__radix-select-wrapper {
+    position: relative;
+    border: 0.2px solid gray;
 }
 
 #user-input__radix-list {
     list-style-type: none;
     display: flex;
     justify-content: center;
+    padding: 0;
 }
 
 #user-input__radix-list li {
@@ -250,16 +283,15 @@ body {
     font-size: 20px;
     min-height: 25px;
     margin-top: 3px;
+    word-wrap: break-word;
 }
 
 #user-input__validation-msg-wrapper {
-    margin-left: 104px;
-    width: 610px;
+    width: 100%;
 }
 
 #window {
-    height: 760px;
-    width: 850px;
+    width: 860px;
     margin: 0 auto;
     color: white;
     background: #282b28;
@@ -289,9 +321,26 @@ body {
 }
 
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 750px) {
     #window {
         width: 99%
     }
+}
 
+@media only screen and (max-width: 600px) {
+    .user-input__bar-wrapper {
+        margin-left: 0;
+    }
+
+    .ui__button-wrapper {
+        flex-direction: column;
+    }
+
+    #window__content-wrapper {
+        padding: 10px 20px 10px 20px;
+    }
+
+    .binTable__highlight-bar {
+        left: 10px
+    }
 }

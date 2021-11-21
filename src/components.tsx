@@ -192,10 +192,6 @@ function BitMnpButtngs () {
                 disabled={disabled} 
                 cname={cname}
                 onClick={() => dispatch({ type: actions.bits.not})}/>
-            <UIButton text='All 1s' 
-                disabled={disabled} 
-                cname={cname}
-                onClick={() => dispatch({ type: actions.bits.all1s})}/>
             <UIButton text='Clear' 
                 disabled={disabled} 
                 cname={cname}
@@ -268,9 +264,9 @@ function OutputBars() {
 
     return (
         <div>
-            <OutputBar header='BIN:' value={bin_val} onClick={onClick(bin_val)}/>
-            <OutputBar header='DEC:' value={dec_val} onClick={onClick(dec_val)}/>
-            <OutputBar header='HEX:' value={hex_val} onClick={onClick(hex_val)}/>
+            <OutputBar header='BIN' value={bin_val} onClick={onClick(bin_val)}/>
+            <OutputBar header='DEC' value={dec_val} onClick={onClick(dec_val)}/>
+            <OutputBar header='HEX' value={hex_val} onClick={onClick(hex_val)}/>
         </div>
     )
 }
@@ -294,10 +290,9 @@ function UserInputSection () {
 
     return (
         <div id='user-input__container'>
-            <RadixSelector />
+            {/* <RadixSelector /> */}
             <UserInputBar />
             <ValidationMassage message={state.validation_message}/>
-
         </div>
     )
 }
@@ -335,7 +330,7 @@ function RadixSelector () {
 function UserInputBar () {
 
     const { dispatch, state } = useContext(CalcContext);
-    const placeholder = 'You can enter your value through here';
+    const placeholder = 'Enter your value';
     const disabled = state.item === Item.Result;
     const getInputValue = () => 
         (document.getElementById('user-input__bar') as HTMLInputElement).value; 
@@ -352,6 +347,14 @@ function UserInputBar () {
 
     return (
         <div className='user-input__bar-wrapper'>
+            <div id='user-input__radix-select-wrapper'>
+                <select id='user-input__radix-select'>
+                    <option value='BIN'>BIN</option>
+                    <option value='DEC'>DEC</option>
+                    <option value='HEX'>HEX</option>
+                </select>
+                <span id='user-input__radix-select-arrow'>&#9660;</span>
+            </div>
             <input id='user-input__bar' type="text" 
                 onInput={onInput}                
                 placeholder={placeholder} disabled={disabled}/>  

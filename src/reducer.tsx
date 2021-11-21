@@ -8,7 +8,7 @@ export const initState = {
     bitwise: Bitwise.AND,
     item: Item.Input1,
     radix_for_input: Radix.DEC,
-    validation_message: ''
+    validation_message: 'This is a text message'
 }
 
 export const actions = {
@@ -17,8 +17,7 @@ export const actions = {
         shift_left: 'Left shift',
         shift_right: 'Right shift',
         not: 'Apply NOT to bits',
-        clear: 'Clear all bits',
-        all1s: 'Make all bits 1'
+        clear: 'Clear all bits'
     },
     bitwise: {
         change: 'Changed the bitwise operator'
@@ -133,17 +132,6 @@ export const bitReducer = (state, action) => {
                     input2: 0,
                     result: calculateResult(input1, 0)
                 };  
-            break;
-
-        case actions.bits.all1s:
-            if (state.item === Item.Input1)
-                return { 
-                    ...state, 
-                    input1: -1,
-                    result: calculateResult(-1, input2)
-                };
-            if (state.item === Item.Input2)
-                return { ...state, input2: -1 };
             break;
 
         case actions.bitwise.change:
