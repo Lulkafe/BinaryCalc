@@ -65,6 +65,7 @@ function BinaryTable () {
         () => dispatch({ type: actions.item.update, item: Item.Result});
 
     return (
+    <div id='binTable-wrapper'>
         <table id='binTable'>
             <thead>
                 <tr>
@@ -99,7 +100,7 @@ function BinaryTable () {
                 </tr>
             </tbody>
         </table>
-    )
+    </div>)
 }
 
 function HighlightBar () {

@@ -58,6 +58,8 @@ function convertDecStrIntoDec (input: string): number {
 function convertBinIntoDec (input: string): number {
     const re = /^[01]{1,32}$/;
 
+    //TODO: convert '1' at 32th into '-'
+
     if (input.length > 32) 
         throw new Error('Number of digits is over 32');
     
@@ -84,10 +86,10 @@ function convertHexIntoDec (input: string): number {
     result = parseInt(input, 16);
     
     if (result > upper_limit)
-        throw new Error('Value is too large');
+        throw new Error('Input value is too large');
     
     if (result < lower_limit)
-        throw new Error('value is too small');
+        throw new Error('Input value is too small');
 
     return result;
 }
