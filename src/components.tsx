@@ -350,7 +350,7 @@ function UserInputBar () {
             <div id='user-input__radix-select-wrapper'>
                 <select id='user-input__radix-select'>
                     <option value='BIN'>BIN</option>
-                    <option value='DEC'>DEC</option>
+                    <option value='DEC' selected={true}>DEC</option>
                     <option value='HEX'>HEX</option>
                 </select>
                 <span id='user-input__radix-select-arrow'>&#9660;</span>

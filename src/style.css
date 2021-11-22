@@ -248,7 +248,7 @@ body {
 
 #user-input__radix-select-wrapper {
     position: relative;
-    border: 0.2px solid gray;
+    /* border: 0.2px solid gray; */
 }
 
 #user-input__radix-list {
@@ -296,7 +296,10 @@ body {
     color: white;
     background: #282b28;
     position: relative;
-    border: 1px solid #979797
+    border: 1px solid #979797;
+    -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.36); 
+    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.36);
+    border-radius: 4px;
 }
 
 #window__content-wrapper {
@@ -309,6 +312,8 @@ body {
     text-align: right;
     padding-top: 8px;
     padding-right: 14px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
 }
 
 #window__menubar-button {
