@@ -123,7 +123,7 @@ body {
 }
 
 .output-bar__input {
-    width: 544px;
+    flex-grow: 1;
     height: 53px;
     outline: none;
     font-size: 24px;
@@ -181,7 +181,7 @@ body {
 }
 
 #user-input__bar {
-    width: 544px;
+    flex-grow: 1;
     height: 53px;
     outline: none;
     font-size: 24px;
@@ -230,7 +230,7 @@ body {
     font-size: 21px;
     font-family: monospace;
     padding-left: 23px;
-    width: 70px;
+    width: 72px;
     height: 51px;
     position: relative;
     color: rgb(142, 190, 225);
@@ -347,5 +347,20 @@ body {
 
     .binTable__highlight-bar {
         left: 10px
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    
+    .output-bar__label {
+        display: none;
+    }
+
+    #user-input__radix-select {
+        position: absolute;
+    }
+
+    .ui__button {
+        width: 62px;
     }
 }
