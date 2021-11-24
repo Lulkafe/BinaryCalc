@@ -8,6 +8,10 @@ body {
     background: linear-gradient(83deg, rgba(65,65,63,1) 0%, rgba(80,65,41,1) 61%, rgba(86,85,85,1) 100%);
 }
 
+html {
+    height: 100%;
+}
+
 :root {
     --accent-color: #E8974A;
     --hl-top: 100px;
@@ -15,7 +19,7 @@ body {
 
 #app-container {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -377,8 +381,8 @@ body {
         height: 40px;
     }
 
-    #user-input__radix-select {
-        position: absolute;
+    #user-input__radix-select-wrapper {
+        display: none;
     }
 
     .ui__button {

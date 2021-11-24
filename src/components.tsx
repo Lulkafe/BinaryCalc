@@ -259,8 +259,12 @@ function OutputBars() {
         base_val = state.result;
 
     dec_val = base_val.toString(10);
-    hex_val = base_val.toString(16).toUpperCase();
-    bin_val = (base_val >>> 0).toString(2);
+    hex_val = (base_val == 0? "" : "0x")
+            + base_val.toString(16).toUpperCase();
+    bin_val = (base_val == 0? "" : "0b")
+            + (base_val >>> 0).toString(2);
+
+
 
     return (
         <div>
@@ -330,7 +334,7 @@ function RadixSelector () {
 function UserInputBar () {
 
     const { dispatch, state } = useContext(CalcContext);
-    const placeholder = 'Enter your value';
+    const placeholder = 'Input your value';
     const disabled = state.item === Item.Result;
     const getInputValue = () => 
         (document.getElementById('user-input__bar') as HTMLInputElement).value; 
