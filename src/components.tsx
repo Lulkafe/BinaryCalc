@@ -258,11 +258,15 @@ function OutputBars() {
     else if (state.item === Item.Result)
         base_val = state.result;
 
+    if (base_val !== 0) {
+        bin_val = "0b";
+        hex_val = (base_val < 0)? '-0x' : '0x';
+    }
+
     dec_val = base_val.toString(10);
-    hex_val = (base_val == 0? "" : "0x")
-            + base_val.toString(16).toUpperCase();
-    bin_val = (base_val == 0? "" : "0b")
-            + (base_val >>> 0).toString(2);
+    bin_val += (base_val >>> 0).toString(2);
+    hex_val += Math.abs(base_val).toString(16).toUpperCase();
+
 
 
 
