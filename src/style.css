@@ -31,12 +31,12 @@ html {
     margin: 0 auto;
     padding: 30px 0 30px 0;
     overflow: hidden;
+    border-spacing: 1px;
 }
 
 
 #binTable-wrapper {
     width: 100%;
-    overflow: scroll;
 }
 
 #binTable__input1, #binTable__input2, #binTable__result {
@@ -337,6 +337,10 @@ html {
 @media only screen and (max-width: 750px) {
     #window {
         width: 99%
+    }
+
+    #binTable-wrapper {
+        overflow-x:scroll;
     }
 }
 
