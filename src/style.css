@@ -43,7 +43,7 @@ html {
 }
 
 #binTable__input1, #binTable__input2, #binTable__result {
-    font-size: 33px;
+    font-size: 34.5px;
 }
 
 #binTable__input1 td, #binTable__input2 td {
@@ -247,14 +247,23 @@ html {
     color: rgb(142, 190, 225);
     background: transparent;
     border: none;
+    cursor: pointer;
+    z-index:100;
+}
+
+#user-input__radix-select:focus {
+    outline: none;
 }
 
 #user-input__radix-select-arrow {
     position: absolute;
     left: 5px;
-    top: 17px;
+    top: 19px;
     font-size:19px;
-    color: rgb(142, 190, 225);
+    z-index: 99;
+    /* color: rgb(142, 190, 225); */
+    color: lightcyan    ;
+    cursor: auto;
 }
 
 #user-input__radix-select-wrapper {

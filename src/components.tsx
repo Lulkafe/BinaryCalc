@@ -268,8 +268,6 @@ function OutputBars() {
     hex_val += Math.abs(base_val).toString(16).toUpperCase();
 
 
-
-
     return (
         <div>
             <OutputBar header='BIN' value={bin_val} onClick={onClick(bin_val)}/>
