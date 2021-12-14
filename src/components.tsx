@@ -296,42 +296,12 @@ function UserInputSection () {
 
     return (
         <div id='user-input__container'>
-            {/* <RadixSelector /> */}
             <UserInputBar />
             <ValidationMassage message={state.validation_message}/>
         </div>
     )
 }
 
-
-function RadixSelector () {
-
-    const { state, dispatch } = useContext(CalcContext);
-    const radix_for_input = state.radix_for_input;
-    const cls = 'user-input__radix-item';
-    const getClass = (radix: Radix) => radix === radix_for_input? 
-        cls + ' user-input__radix-item__highlight' : cls;
-    const onClick = (radix) => () => {
-        dispatch({type: actions.radix.change, value: radix });
-
-        const value = (document.getElementById
-            ('user-input__bar') as HTMLInputElement).value; 
-
-        dispatch({type: actions.input.validate, value });
-    }
-
-    return (
-        <div>
-            <ol id='user-input__radix-list'>
-                <li className={getClass(Radix.BIN)} onClick={onClick(Radix.BIN)}>BIN</li>
-                <li>/</li>
-                <li className={getClass(Radix.DEC)} onClick={onClick(Radix.DEC)}>DEC</li>
-                <li>/</li>
-                <li className={getClass(Radix.HEX)} onClick={onClick(Radix.HEX)}>HEX</li>
-            </ol>
-        </div>
-    )
-}
 
 function UserInputBar () {
 
@@ -348,13 +318,24 @@ function UserInputBar () {
         const value = getInputValue();
         dispatch({ type: actions.input.update, value });
     }
+    const onChange = () => {
+        let value = 
+            (document.getElementById('user-input__radix-select') as HTMLSelectElement).value;
+        let radix: Radix = Radix.DEC;
+
+        if (value === "BIN") radix = Radix.BIN; 
+        if (value === "HEX") radix = Radix.HEX; 
+
+        dispatch({ type: actions.radix.change, value: radix});
+        onInput();
+    };
     const btnCls = 'user-input__enter-btn' + 
         ((disabled)? ' user-input__enter-btn__disabled' : '');
 
     return (
         <div className='user-input__bar-wrapper'>
             <div id='user-input__radix-select-wrapper'>
-                <select id='user-input__radix-select'>
+                <select id='user-input__radix-select' onChange={onChange}>
                     <option value='BIN'>BIN</option>
                     <option value='DEC' selected={true}>DEC</option>
                     <option value='HEX'>HEX</option>

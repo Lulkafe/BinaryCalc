@@ -195,10 +195,11 @@ export const bitReducer = (state, action) => {
             }
 
         case actions.radix.change:
-            return { 
-                ...state, 
-                radix_for_input: action.value 
-            };
+            return {
+                ...state,
+                radix_for_input: action.value
+            }
+        
 
         case actions.reset:
             return initState;
