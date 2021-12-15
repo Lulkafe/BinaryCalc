@@ -8,7 +8,7 @@ export const initState = {
     bitwise: Bitwise.AND,
     item: Item.Input1,
     radix_for_input: Radix.DEC,
-    validation_message: 'This is a text message'
+    validation_message: ''
 }
 
 export const actions = {

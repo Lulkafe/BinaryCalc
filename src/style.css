@@ -43,7 +43,7 @@ html {
 }
 
 #binTable__input1, #binTable__input2, #binTable__result {
-    font-size: 34.5px;
+    font-size: 36px;
 }
 
 #binTable__input1 td, #binTable__input2 td {
@@ -67,7 +67,7 @@ html {
 }
 
 .binTable__highlight-bar__result {
-    top: calc(var(--hl-top) + 107px);
+    top: calc(var(--hl-top) + 93px);
 }
 
 #binTable__result {
