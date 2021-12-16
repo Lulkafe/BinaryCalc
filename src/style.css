@@ -14,7 +14,7 @@ html {
 
 :root {
     --accent-color: #E8974A;
-    --hl-top: 100px;
+    --row-hl-color: #fb9d437a;
 }
 
 #app-container {
@@ -31,11 +31,15 @@ html {
     margin: 0 auto;
     padding: 30px 0 5px 0;
     overflow: hidden;
-    border-spacing: 1px;
+    border-spacing: 0px;
 }
 
 #binTable__separator {
     margin: 0;
+}
+
+.binTable__tr--highlight {
+    background-color: var(--row-hl-color);
 }
 
 #binTable-wrapper {
@@ -45,6 +49,7 @@ html {
 #binTable__input1, #binTable__input2, #binTable__result {
     font-size: 36px;
 }
+
 
 #binTable__input1 td, #binTable__input2 td {
     cursor: pointer;
@@ -56,18 +61,6 @@ html {
     width: 8px;
     height: 40px;
     left: 29px;
-}
-
-.binTable__highlight-bar__input1 {
-    top: var(--hl-top);
-}
-
-.binTable__highlight-bar__input2 {
-    top: calc(var(--hl-top) + 44px);
-}
-
-.binTable__highlight-bar__result {
-    top: calc(var(--hl-top) + 93px);
 }
 
 #binTable__result {

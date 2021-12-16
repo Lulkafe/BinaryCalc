@@ -14,7 +14,6 @@ export default function BitCalc () {
         <div id='app-container'>
             <CalcContext.Provider value={{state, dispatch}}>
                 <Window>
-                    <HighlightBar />
                     <BinaryTable />
                     <UIButtons />
                     <hr />
@@ -63,6 +62,10 @@ function BinaryTable () {
         () => dispatch({ type: actions.bits.flip, item: Item.Input2, index: i });
     const result_click = 
         () => dispatch({ type: actions.item.update, item: Item.Result});
+    const getClass = (item: Item) => {
+        const className = 'binTable__tr--highlight';
+        return (item === state.item)? className : '';
+    } 
 
     return (
     <div id='binTable-wrapper'>
@@ -73,14 +76,14 @@ function BinaryTable () {
                 </tr>
             </thead>
             <tbody>
-                <tr id='binTable__input1'>
+                <tr id='binTable__input1' className={getClass(Item.Input1)}>
                     { ary.map((d, i) => 
                         <td onClick={input1_click(31 - i)} 
                             key={'input1_' + i}>
                             {bin_at(input1, 31 - i)}
                         </td>)}
                 </tr>
-                <tr id='binTable__input2'>
+                <tr id='binTable__input2' className={getClass(Item.Input2)}>
                   { ary.map((d, i) => 
                         <td onClick={input2_click(31 - i)} 
                             key={'input2_' + i}>
@@ -92,7 +95,8 @@ function BinaryTable () {
                         <hr id='binTable__separator'/>
                     </td>
                 </tr>
-                <tr id='binTable__result' onClick={result_click}>
+                <tr id='binTable__result' className={getClass(Item.Result)}
+                    onClick={result_click}>
                     { ary.map((d, i) => 
                         <td key={'result_' + i}>
                             { bin_at(result, 31 - i) }
@@ -335,7 +339,8 @@ function UserInputBar () {
     return (
         <div className='user-input__bar-wrapper'>
             <div id='user-input__radix-select-wrapper'>
-                <select id='user-input__radix-select' onChange={onChange}>
+                <select id='user-input__radix-select' 
+                    onChange={onChange} >
                     <option value='BIN'>BIN</option>
                     <option value='DEC' selected={true}>DEC</option>
                     <option value='HEX'>HEX</option>
@@ -352,10 +357,14 @@ function UserInputBar () {
 }
 
 function ValidationMassage (prop) {
+
+    const { state } = useContext(CalcContext);
+    const disabled = state.item === Item.Result;
+
     return (
         <div id='user-input__validation-msg-wrapper'> 
             <p id='user-input__validation-msg'>
-                {prop.message}
+                { disabled? '' : prop.message}
             </p>
         </div>
     )
