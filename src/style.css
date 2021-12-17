@@ -39,8 +39,8 @@ html {
 }
 
 .binTable__tr--highlight {
-    background-color: var(--row-hl-color);
-}
+    background: linear-gradient(0deg, rgba(40,43,40,1) 0%, rgba(40,43,40,1) 11%, rgba(148,106,66,1) 12%, rgba(148,106,66,1) 88%, rgba(40,43,40,1) 89%, rgba(40,43,40,1) 100%);
+} 
 
 #binTable-wrapper {
     width: 100%;
@@ -89,6 +89,7 @@ html {
     display: flex;
     justify-content: center;
     padding: 0;
+    margin-bottom: 9px;
 }
 
 #navi__item-list li {
@@ -251,10 +252,10 @@ html {
 #user-input__radix-select-arrow {
     position: absolute;
     left: 5px;
-    top: 19px;
+    top: 50%;
+    transform: translateY(-50%);
     font-size:19px;
     z-index: 99;
-    /* color: rgb(142, 190, 225); */
     color: lightcyan    ;
     cursor: auto;
 }
