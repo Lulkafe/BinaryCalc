@@ -107,23 +107,6 @@ function BinaryTable () {
     </div>)
 }
 
-function HighlightBar () {
-
-    const { state } = useContext(CalcContext);
-    const { item } = state;
-
-    let cls = 'binTable__highlight-bar binTable__highlight-bar__';
-    if (item === Item.Input1)
-        cls += 'input1';
-    else if (item === Item.Input2)
-        cls += 'input2';
-    else if (item === Item.Result)
-        cls += 'result'
-
-    return <div className={cls}></div>
-}
-
-
 
 //******* COMPONENTS FOR UI SECTION *******
 function UIButtons (props) {

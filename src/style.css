@@ -325,7 +325,10 @@ html {
     background: #dbdbdb;
     height: 38px;
     text-align: right;
-    padding-top: 8px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
     padding-right: 14px;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
