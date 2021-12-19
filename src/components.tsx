@@ -323,9 +323,10 @@ function UserInputBar () {
         <div className='user-input__bar-wrapper'>
             <div id='user-input__radix-select-wrapper'>
                 <select id='user-input__radix-select' 
+                    defaultValue='DEC'
                     onChange={onChange} >
                     <option value='BIN'>BIN</option>
-                    <option value='DEC' selected={true}>DEC</option>
+                    <option value='DEC'>DEC</option>
                     <option value='HEX'>HEX</option>
                 </select>
                 <span id='user-input__radix-select-arrow'>&#9660;</span>

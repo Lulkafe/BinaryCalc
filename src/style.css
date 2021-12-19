@@ -8,8 +8,9 @@ body {
     background: linear-gradient(83deg, rgba(65,65,63,1) 0%, rgba(80,65,41,1) 61%, rgba(86,85,85,1) 100%);
 }
 
-html {
-    height: 100%;
+body, html, #root {
+    width: 100%;
+    min-height: 100%;
 }
 
 :root {
@@ -307,6 +308,7 @@ html {
 
 #window {
     width: 860px;
+    min-height: 650px;
     margin: 0 auto;
     color: white;
     background: #282b28;
@@ -346,7 +348,8 @@ html {
 
 @media only screen and (max-width: 750px) {
     #window {
-        width: 99%
+        width: 100%;
+        border: 0;
     }
 
     #binTable-wrapper {
