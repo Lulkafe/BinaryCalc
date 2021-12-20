@@ -112,8 +112,12 @@ html, body {
     flex-grow: 0;
 }
 
+.output-bar__copy-btn:active {
+    opacity: 70%;
+}
+
 .output-bar__copy-btn:hover {
-    opacity: 85%;
+    filter: brightness(120%);
 }
 
 .output-bar__label {
@@ -211,7 +215,7 @@ html, body {
 }
 
 .user-input__enter-btn:hover {
-    opacity: 85%;
+    filter: brightness(120%);
 }
 
 .user-input__enter-btn:active {
@@ -348,6 +352,16 @@ html, body {
 
 
 @media only screen and (max-width: 875px) {
+
+
+    #binTable-wrapper {
+        overflow-x:scroll;
+    }
+
+    #binTable__input1, #binTable__input2, #binTable__result {
+        font-size: 40px;
+    }
+
     #window {
         width: 100%;
         border: 0;  
@@ -358,10 +372,6 @@ html, body {
 
     #window__menubar {
         display:none;
-    }
-
-    #binTable-wrapper {
-        overflow-x:scroll;
     }
 
     
