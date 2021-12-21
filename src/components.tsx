@@ -293,7 +293,7 @@ function UserInputSection () {
 function UserInputBar () {
 
     const { dispatch, state } = useContext(CalcContext);
-    const placeholder = 'Input your value';
+    const placeholder = 'Enter your value here';
     const disabled = state.item === Item.Result;
     const getInputValue = () => 
         (document.getElementById('user-input__bar') as HTMLInputElement).value; 

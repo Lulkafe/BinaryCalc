@@ -198,6 +198,10 @@ html, body {
     border: 1px solid #787777
 }
 
+#user-input__bar::placeholder {
+    font-size: 20px;
+}
+
 #user-input__container {
     margin-top: 0px;
 }
@@ -269,39 +273,13 @@ html, body {
 #user-input__radix-select-wrapper {
     position: relative;
     height: 100%;
-    /* border: 0.2px solid gray; */
-}
-
-#user-input__radix-list {
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-}
-
-#user-input__radix-list li {
-    display: inline-block;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-.user-input__radix-item {
-    cursor: pointer;
-    font-size: 20px;
-    color: #B0AEAE;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.user-input__radix-item__highlight {
-    color: white;
-    border-bottom: 3px solid #8EBEE1;
 }
 
 #user-input__validation-msg {
     color: #ff0000; /* TODO: should be adjusted later*/
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     min-height: 25px;
     margin-top: 3px;
     word-wrap: break-word;
@@ -353,13 +331,12 @@ html, body {
 
 @media only screen and (max-width: 875px) {
 
-
     #binTable-wrapper {
         overflow-x:scroll;
     }
 
     #binTable__input1, #binTable__input2, #binTable__result {
-        font-size: 40px;
+        font-size: 39px;
     }
 
     #window {
@@ -386,11 +363,7 @@ html, body {
         display: flex;
     }
 
-    #ui__bitwise-buttons button {
-        flex-grow: 1;
-    }
-
-    #ui__bit-mnp-buttons button {
+    #ui__bitwise-buttons button,  #ui__bit-mnp-buttons button  {
         flex-grow: 1;
     }
 
@@ -400,7 +373,7 @@ html, body {
     }
 
     #window__content-wrapper {
-        padding: 10px 20px 10px 20px;
+        padding: 5px 10px 5px 10px;
     }
 
 }
@@ -423,7 +396,7 @@ html, body {
     .output-bar__input, #user-input__bar {
         width: 100px; 
     }
-
+    
     .user-input__bar-wrapper {
         height: 40px;
     }
