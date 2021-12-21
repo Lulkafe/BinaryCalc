@@ -382,16 +382,12 @@ html, body {
         margin-left: 0;
     }
 
-    #ui__bitwise-buttons {
+    #ui__bitwise-buttons, #ui__bit-mnp-buttons{
         display: flex;
     }
 
     #ui__bitwise-buttons button {
         flex-grow: 1;
-    }
-
-    #ui__bit-mnp-buttons {
-        display: flex;        
     }
 
     #ui__bit-mnp-buttons button {
@@ -407,10 +403,6 @@ html, body {
         padding: 10px 20px 10px 20px;
     }
 
-
-    .binTable__highlight-bar {
-        left: 10px
-    }
 }
 
 @media only screen and (max-width: 450px) {
@@ -439,15 +431,11 @@ html, body {
     #user-input__radix-select-wrapper {
         display: none;
     }
-
-    .ui__button {
-        width: 62px;
-        height: 30px;
-    }
 }
 
-@media only screen and (max-width: 420px) and (max-height: 570px) {
-    #window__menubar {
-        display: none;
+@media only screen and (max-width: 320px) {
+    #navi {
+        font-size: 20px;
     }
+    
 }

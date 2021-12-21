@@ -39,7 +39,7 @@ function convertDecStrIntoDec (input: string): number {
     let result = 0;
 
     if (re1.test(input))
-        throw new Error('No support for fractions');
+        throw new Error('Fractions not supported');
 
     if (!re2.test(input))
         throw new Error('Invalid character(s) found');
@@ -61,7 +61,7 @@ function convertBinIntoDec (input: string): number {
     //TODO: convert '1' at 32th into '-'
 
     if (input.length > 32) 
-        throw new Error('Number of digits is over 32');
+        throw new Error('Too many digits (over 32)');
     
     if (!re.test(input))
         throw new Error('Invalid character(s) found');
