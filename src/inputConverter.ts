@@ -5,8 +5,11 @@ import { Radix } from './enum';
    (1) Signed 32 bit value
    (2) No support for fractions (e.g. "12.3456")
    (3) Special cases:
-        (a) "-" => 0
-        (b) "-0" => 0
+        (a) Only "-" 
+            BIN: Error (because BIN doesn't accept "-")
+            DEC: => 0
+            HEX: => 0
+        (b) "-0" => 0 (*except BIN)
         (c) Start with "+-", "-+" => Error
               e.g. "+-100", "-+200"
 */
@@ -90,9 +93,6 @@ function convertBinIntoDec (input: string): number {
         
     if (input === '')
         throw new Error('Value is required');
-
-    if (input === '-0')
-        return 0;
     
     if (input.length > 32) 
        throw new Error('Too many digits (over 32)');
