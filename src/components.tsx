@@ -291,34 +291,32 @@ function UserInputSection () {
 
 
 function UserInputBar () {
-
+    
     const { dispatch, state } = useContext(CalcContext);
     const placeholder = 'Enter your value here';
     const disabled = state.item === Item.Result;
+    const btnCls = 'user-input__enter-btn' + 
+    ((disabled)? ' user-input__enter-btn__disabled' : '');
     const getInputValue = () => 
         (document.getElementById('user-input__bar') as HTMLInputElement).value; 
     const onInput = () => { 
-        const value = getInputValue();
-        dispatch({ type: actions.input.validate, value })
+        dispatch({ type: actions.input.validate, value: getInputValue() })
     };
     const onClick = () => {
-        const value = getInputValue();
-        dispatch({ type: actions.input.update, value });
+        dispatch({ type: actions.input.update, value: getInputValue() });
     }
     const onChange = () => {
         let value = 
-            (document.getElementById('user-input__radix-select') as HTMLSelectElement).value;
+        (document.getElementById('user-input__radix-select') as HTMLSelectElement).value;
         let radix: Radix = Radix.DEC;
-
+        
         if (value === "BIN") radix = Radix.BIN; 
         if (value === "HEX") radix = Radix.HEX; 
-
+        
         dispatch({ type: actions.radix.change, value: radix});
         onInput();
     };
-    const btnCls = 'user-input__enter-btn' + 
-        ((disabled)? ' user-input__enter-btn__disabled' : '');
-
+    
     return (
         <div className='user-input__bar-wrapper'>
             <div id='user-input__radix-select-wrapper'>

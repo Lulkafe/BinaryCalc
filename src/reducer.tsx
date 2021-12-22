@@ -167,7 +167,17 @@ export const bitReducer = (state, action) => {
                 const value: string = action.value.toString();
                 const radix: Radix = state.radix_for_input;
                 const new_val = convertUserInput(value, radix);
+
+                //not invalid but valueless cases
+                //e.g. "0b", "", "0x" 
+                if (new_val === undefined ||
+                    new_val === null)
+                    return {
+                        ...state,
+                        validation_message: ''
+                    }
               
+                //Validation purpose only, so no value update
                 if (action.type === actions.input.validate)
                     return {
                         ...state,
