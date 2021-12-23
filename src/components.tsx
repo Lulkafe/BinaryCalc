@@ -3,22 +3,22 @@ import { useReducer, useContext } from 'react';
 import { bitReducer, initState, actions } from './reducer';
 import { Item, Bitwise, Radix } from './enum';
 
-
 const CalcContext = React.createContext(undefined);
+
 
 export default function BitCalc () {
 
     const [ state, dispatch ] = useReducer(bitReducer, initState);
 
     return (
-        <div id='app-container'>
+        <div id='app__container'>
             <CalcContext.Provider value={{state, dispatch}}>
                 <Window>
                     <BinaryTable />
-                    <UIButtons />
+                    <OperationButtons />
                     <hr />
-                    <OutputSection />
-                    <UserInputSection />
+                    <OutputResult />
+                    <UserInput />
                 </Window>    
             </CalcContext.Provider>
         </div>
@@ -32,16 +32,16 @@ function Window (props) {
     const { dispatch } = useContext(CalcContext);
 
     const onClick = () => {
-        if (confirm('Do you want to reset?'))
+        if (confirm('Do you want to reset all values?'))
             dispatch({ type: actions.reset });
     }
 
     return (
-        <div id='window'>
-            <div id='window__menubar'>
-                <button id='window__menubar-button' type='button' onClick={onClick}></button>
+        <div className='window'>
+            <div className='window__menubar'>
+                <button className='window__menubar-button' type='button' onClick={onClick}></button>
             </div>
-            <div id='window__content-wrapper'>
+            <div className='window__content-wrapper'>
                 {props.children}
             </div> 
         </div>
@@ -68,7 +68,7 @@ function BinaryTable () {
     } 
 
     return (
-    <div className='binTable-wrapper'>
+    <div className='binTable__wrapper'>
         <table className='binTable'>
             <thead>
                 <tr>
@@ -78,17 +78,17 @@ function BinaryTable () {
             <tbody>
                 <tr className={'binTable__input1' + getClass(Item.Input1)}>
                     { ary.map((d, i) => 
-                        <td onClick={input1_click(31 - i)} 
-                            key={'input1_' + i}>
-                            {binAt(input1, 31 - i)}
-                        </td>)}
+                    <td onClick={input1_click(31 - i)} 
+                        key={'input1_' + i}>
+                        {binAt(input1, 31 - i)}
+                    </td>)}
                 </tr>
                 <tr className={'binTable__input2' + getClass(Item.Input2)}>
-                  { ary.map((d, i) => 
-                        <td onClick={input2_click(31 - i)} 
-                            key={'input2_' + i}>
-                            {binAt(input2, 31 - i)}
-                        </td>)}
+                    { ary.map((d, i) => 
+                    <td onClick={input2_click(31 - i)} 
+                        key={'input2_' + i}>
+                        {binAt(input2, 31 - i)}
+                    </td>)}
                 </tr>
                 <tr>
                     <td colSpan={32} key='binTable_separator'>
@@ -98,9 +98,9 @@ function BinaryTable () {
                 <tr className={'binTable__result' + getClass(Item.Result)}
                     onClick={result_click}>
                     { ary.map((d, i) => 
-                        <td key={'result_' + i}>
-                            { binAt(result, 31 - i) }
-                        </td> )}
+                    <td key={'result_' + i}>
+                        { binAt(result, 31 - i) }
+                    </td> )}
                 </tr>
             </tbody>
         </table>
@@ -109,9 +109,9 @@ function BinaryTable () {
 
 
 //******* COMPONENTS FOR UI SECTION *******
-function UIButtons (props) {
+function OperationButtons (props) {
     return (
-        <div className='ui__button-wrapper'>
+        <div className='oper-button-wrapper'>
             <BitwiseButtons />
             <BitMnpButtngs />
         </div>
@@ -119,13 +119,13 @@ function UIButtons (props) {
 }
 
 
-function UIButton (props) {
+function OperationButton (props) {
 
     const { cname, disabled } = props;
 
     return (
         <button 
-            className={'ui__button ' + cname}
+            className={'oper-button ' + cname}
             type='button'
             onClick={props.onClick}
             disabled={disabled}>
@@ -138,21 +138,21 @@ function UIButton (props) {
 function BitwiseButtons () {
     const { state, dispatch } = useContext(CalcContext);
     const getClass = (bw: Bitwise) => state.bitwise !== bw? 
-        '' : 'ui__button__grayout'
+        '' : 'oper-button--grayout'
     const createAction = (oper:Bitwise) => () => dispatch({
         type: actions.bitwise.change,
         value: oper
     })
 
     return (
-        <div id="ui__bitwise-buttons">
-            <UIButton text='AND' 
+        <div className="bitwise-buttons">
+            <OperationButton text='AND' 
                 cname={getClass(Bitwise.AND)}
                 onClick={createAction(Bitwise.AND)}/>
-            <UIButton text='OR'
+            <OperationButton text='OR'
                 cname={getClass(Bitwise.OR)}  
                 onClick={createAction(Bitwise.OR)} />
-            <UIButton text='XOR'
+            <OperationButton text='XOR'
                 cname={getClass(Bitwise.XOR)} 
                 onClick={createAction(Bitwise.XOR)}/>
         </div>
@@ -163,23 +163,23 @@ function BitwiseButtons () {
 function BitMnpButtngs () {
     const { state, dispatch } = useContext(CalcContext);
     const disabled = state.item === Item.Result;
-    const cname = (disabled)? 'ui__bit-mnp-button__disabled' : '';
+    const cname = (disabled)? 'bit-mnp-button--disabled' : '';
 
     return (
-        <div id="ui__bit-mnp-buttons">
-            <UIButton text='<<' 
+        <div className="bit-mnp-buttons">
+            <OperationButton text='<<' 
                 disabled={disabled} 
                 cname={cname}
                 onClick={() => dispatch({ type: actions.bits.shift_left})}/>
-            <UIButton text='>>' 
+            <OperationButton text='>>' 
                 disabled={disabled} 
                 cname={cname}
                 onClick={() => dispatch({ type: actions.bits.shift_right})}/>
-            <UIButton text='NOT' 
+            <OperationButton text='NOT' 
                 disabled={disabled} 
                 cname={cname}
                 onClick={() => dispatch({ type: actions.bits.not})}/>
-            <UIButton text='Clear' 
+            <OperationButton text='Clear' 
                 disabled={disabled} 
                 cname={cname}
                 onClick={() => dispatch({ type: actions.bits.clear})}/>
@@ -189,9 +189,9 @@ function BitMnpButtngs () {
 
 
 //******* COMPONENTS FOR OUPUT SECTION *******
-function OutputSection () {
+function OutputResult () {
     return (
-        <div id='output-section'>
+        <div>
             <OutputNavi/>
             <OutputBars/>
         </div>
@@ -201,13 +201,13 @@ function OutputSection () {
 function OutputNavi () {
     const { state, dispatch } = useContext(CalcContext);
     const getClass = (item: Item) => state.item == item? 
-        'navi__item navi__item__highlight' : 'navi__item';
+        'navi__item navi__item--highlight' : 'navi__item';
     const createAction = (item) => 
         () => dispatch({type: actions.item.click, item});
 
     return (
-        <nav id='navi'>
-            <ul id='navi__item-list'>
+        <nav className='navi'>
+            <ul className='navi__item-list'>
                 <li key='item-input1' 
                     onClick={createAction(Item.Input1)}
                     className={getClass(Item.Input1)}>Input1
@@ -277,12 +277,12 @@ function OutputBar(props) {
 }
 
 
-function UserInputSection () {
+function UserInput () {
 
     const { state } = useContext(CalcContext);
 
     return (
-        <div id='user-input__container'>
+        <div className='user-input__wrapper'>
             <UserInputBar />
             <ValidationMassage message={state.validation_message}/>
         </div>
@@ -295,20 +295,20 @@ function UserInputBar () {
     const { dispatch, state } = useContext(CalcContext);
     const placeholder = 'Enter your value here';
     const disabled = state.item === Item.Result;
+    const inputBarId = 'user-input__bar';
+    const selectId = 'user-input__radix-select';
     const btnCls = 'user-input__enter-btn' + 
-    ((disabled)? ' user-input__enter-btn__disabled' : '');
+        (disabled? ' user-input__enter-btn--disabled' : '');
     const getInputValue = () => 
-        (document.getElementById('user-input__bar') as HTMLInputElement).value; 
-    const onInput = () => { 
+        (document.getElementById(inputBarId) as HTMLInputElement).value; 
+    const onInput = () => 
         dispatch({ type: actions.input.validate, value: getInputValue() })
-    };
-    const onClick = () => {
+    const onClick = () => 
         dispatch({ type: actions.input.update, value: getInputValue() });
-    }
     const onChange = () => {
-        let value = 
-        (document.getElementById('user-input__radix-select') as HTMLSelectElement).value;
         let radix: Radix = Radix.DEC;
+        let value = 
+            (document.getElementById(selectId) as HTMLSelectElement).value;
         
         if (value === "BIN") radix = Radix.BIN; 
         if (value === "HEX") radix = Radix.HEX; 
@@ -319,17 +319,17 @@ function UserInputBar () {
     
     return (
         <div className='user-input__bar-wrapper'>
-            <div id='user-input__radix-select-wrapper'>
-                <select id='user-input__radix-select' 
+            <div className='user-input__radix-select-wrapper'>
+                <select id={selectId}
                     defaultValue='DEC'
                     onChange={onChange} >
                     <option value='BIN'>BIN</option>
                     <option value='DEC'>DEC</option>
                     <option value='HEX'>HEX</option>
                 </select>
-                <span id='user-input__radix-select-arrow'>&#9660;</span>
+                <span className='user-input__radix-select-arrow'>&#9660;</span>
             </div>
-            <input id='user-input__bar' type="text" 
+            <input id={inputBarId} type="text" 
                 onInput={onInput}                
                 placeholder={placeholder} disabled={disabled}/>  
             <button className={btnCls} type="button" 
@@ -344,8 +344,8 @@ function ValidationMassage (prop) {
     const disabled = state.item === Item.Result;
 
     return (
-        <div id='user-input__validation-msg-wrapper'> 
-            <p id='user-input__validation-msg'>
+        <div className='user-input__validation-msg-wrapper'> 
+            <p className='user-input__validation-msg'>
                 { disabled? '' : prop.message}
             </p>
         </div>

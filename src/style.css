@@ -18,7 +18,7 @@ html, body {
     --row-hl-color: #fb9d437a;
 }
 
-#app-container {
+#app__container {
     width: 100vw;
     min-height: 100vh;
     display: flex;
@@ -34,6 +34,9 @@ html, body {
     padding: 30px 0 5px 0;
     overflow: hidden;
     border-spacing: 0px;
+}
+
+.binTable__input1, .binTable__input2, .binTable__result {
     font-size: 36px;
 }
 
@@ -45,7 +48,7 @@ html, body {
     background: linear-gradient(0deg, rgba(40,43,40,1) 0%, rgba(40,43,40,1) 11%, rgba(148,106,66,1) 12%, rgba(148,106,66,1) 88%, rgba(40,43,40,1) 89%, rgba(40,43,40,1) 100%);
 } 
 
-.binTable-wrapper {
+.binTable__wrapper {
     width: 100%;
 }
 
@@ -53,7 +56,7 @@ html, body {
     cursor: pointer;
 }
 
-#navi {
+.navi {
     margin: 0 auto;
     font-size: 24px;
 }
@@ -65,12 +68,12 @@ html, body {
     color: #B0AEAE;
 }
 
-.navi__item__highlight {
+.navi__item--highlight {
     color: white;
     border-bottom: 5px solid var(--accent-color);
 }
 
-#navi__item-list {
+.navi__item-list {
     list-style-type: none;
     display: flex;
     justify-content: center;
@@ -78,7 +81,7 @@ html, body {
     margin-bottom: 9px;
 }
 
-#navi__item-list li {
+.navi__item-list li {
     display: inline-block;
     margin-left: 5px;
     margin-right: 5px;
@@ -128,7 +131,7 @@ html, body {
     height: 53px;
 }
 
-.ui__button {
+.oper-button {
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -142,32 +145,32 @@ html, body {
     margin-left: 2px;
 }
 
-.ui__button:hover {
+.oper-button:hover {
     outline: 2px solid rgb(170, 206, 69);
 }
 
-.ui__button:active {
+.oper-button:active {
     opacity: 70%;
 }
 
-#ui__bitwise-buttons {
+.bitwise-buttons {
     display:inline-block;
 }
 
-#ui__bit-mnp-buttons {
+.bit-mnp-buttons {
     display:inline-block;
 }
 
-.ui__bit-mnp-button__disabled {
+.ui__bit-mnp-button--disabled {
     background: #d2d1d1;
     cursor: auto;
 }
 
-.ui__button__grayout {
+.oper-button--grayout {
     background: #838181;
 }
 
-.ui__button-wrapper {
+.oper-button-wrapper {
     display: flex;
     justify-content: space-between;
     margin-top: 25px;
@@ -190,10 +193,6 @@ html, body {
     font-size: 20px;
 }
 
-#user-input__container {
-    margin-top: 0px;
-}
-
 .user-input__enter-btn {
     flex-grow: 0;
     width: 66px;
@@ -214,7 +213,7 @@ html, body {
     opacity: 70%;
 }
 
-.user-input__enter-btn__disabled {
+.user-input__enter-btn--disabled {
     opacity: 73%;
     cursor: auto;
 }
@@ -247,7 +246,7 @@ html, body {
     outline: none;
 }
 
-#user-input__radix-select-arrow {
+.user-input__radix-select-arrow {
     position: absolute;
     left: 5px;
     top: 50%;
@@ -258,13 +257,13 @@ html, body {
     cursor: auto;
 }
 
-#user-input__radix-select-wrapper {
+.user-input__radix-select-wrapper {
     position: relative;
     height: 100%;
 }
 
-#user-input__validation-msg {
-    color: #ff0000; /* TODO: should be adjusted later*/
+.user-input__validation-msg {
+    color: #ff0000; 
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     font-size: 18px;
@@ -273,11 +272,11 @@ html, body {
     word-wrap: break-word;
 }
 
-#user-input__validation-msg-wrapper {
+.user-input__validation-msg-wrapper {
     width: 100%;
 }
 
-#window {
+.window {
     width: 860px;
     margin: 0 auto;
     color: white;
@@ -289,12 +288,12 @@ html, body {
     border-radius: 4px;
 }
 
-#window__content-wrapper {
+.window__content-wrapper {
     padding: 10px 40px 10px 40px;
     max-width: 100%;
 }
 
-#window__menubar {
+.window__menubar {
     background: #dbdbdb;
     height: 38px;
     text-align: right;
@@ -307,7 +306,7 @@ html, body {
     border-top-right-radius: 3px;
 }
 
-#window__menubar-button {
+.window__menubar-button {
     border-radius: 22px;
     height: 22px;
     width: 22px;
@@ -318,16 +317,16 @@ html, body {
 
 
 @media only screen and (max-width: 875px) {
-
-    .binTable-wrapper {
-        overflow-x:scroll;
-    }
-
-    .binTable {
+    
+    .binTable__input1, .binTable__input2, .binTable__result {
         font-size: 39px;
     }
 
-    #window {
+    .binTable__wrapper {
+        overflow-x: scroll;
+    }
+
+    .window {
         width: 100%;
         border: 0;  
         display: flex;
@@ -335,8 +334,8 @@ html, body {
         flex-grow: 1;
     }
 
-    #window__menubar {
-        display:none;
+    .window__menubar {
+        display: none;
     }
 
     
@@ -347,20 +346,20 @@ html, body {
         margin-left: 0;
     }
 
-    #ui__bitwise-buttons, #ui__bit-mnp-buttons{
+    .bitwise-buttons, .bit-mnp-buttons{
         display: flex;
     }
 
-    #ui__bitwise-buttons button,  #ui__bit-mnp-buttons button  {
+    .oper-button  {
         flex-grow: 1;
     }
 
-    .ui__button-wrapper {
+    .oper-button-wrapper {
         flex-flow: column;
         gap: 5px;
     }
 
-    #window__content-wrapper {
+    .window__content-wrapper {
         padding: 5px 10px 5px 10px;
     }
 
@@ -389,13 +388,13 @@ html, body {
         height: 40px;
     }
 
-    #user-input__radix-select-wrapper {
+    .user-input__radix-select-wrapper {
         display: none;
     }
 }
 
 @media only screen and (max-width: 320px) {
-    #navi {
+    .navi {
         font-size: 20px;
     }
     
