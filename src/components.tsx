@@ -55,7 +55,7 @@ function BinaryTable () {
     const { state, dispatch} = useContext(CalcContext);
     const { input1, input2, result } = state;
     const ary = [...new Array(32)];
-    const bin_at = (v, i) => (v >> i) & 1;
+    const binAt = (v, i) => (v >> i) & 1;
     const input1_click = (i) =>
         () => dispatch({ type: actions.bits.flip, item: Item.Input1, index: i });
     const input2_click = (i) =>
@@ -63,43 +63,43 @@ function BinaryTable () {
     const result_click = 
         () => dispatch({ type: actions.item.update, item: Item.Result});
     const getClass = (item: Item) => {
-        const className = 'binTable__tr--highlight';
-        return (item === state.item)? className : '';
+        const className = ' binTable__tr--highlight';
+        return (item === state.item)? className : ' ';
     } 
 
     return (
-    <div id='binTable-wrapper'>
-        <table id='binTable'>
+    <div className='binTable-wrapper'>
+        <table className='binTable'>
             <thead>
                 <tr>
                     { ary.map((d, i) => <th key={'header' + i}>{ 31 - i }</th>) }
                 </tr>
             </thead>
             <tbody>
-                <tr id='binTable__input1' className={getClass(Item.Input1)}>
+                <tr className={'binTable__input1' + getClass(Item.Input1)}>
                     { ary.map((d, i) => 
                         <td onClick={input1_click(31 - i)} 
                             key={'input1_' + i}>
-                            {bin_at(input1, 31 - i)}
+                            {binAt(input1, 31 - i)}
                         </td>)}
                 </tr>
-                <tr id='binTable__input2' className={getClass(Item.Input2)}>
+                <tr className={'binTable__input2' + getClass(Item.Input2)}>
                   { ary.map((d, i) => 
                         <td onClick={input2_click(31 - i)} 
                             key={'input2_' + i}>
-                            {bin_at(input2, 31 - i)}
+                            {binAt(input2, 31 - i)}
                         </td>)}
                 </tr>
                 <tr>
                     <td colSpan={32} key='binTable_separator'>
-                        <hr id='binTable__separator'/>
+                        <hr className='binTable__separator'/>
                     </td>
                 </tr>
-                <tr id='binTable__result' className={getClass(Item.Result)}
+                <tr className={'binTable__result' + getClass(Item.Result)}
                     onClick={result_click}>
                     { ary.map((d, i) => 
                         <td key={'result_' + i}>
-                            { bin_at(result, 31 - i) }
+                            { binAt(result, 31 - i) }
                         </td> )}
                 </tr>
             </tbody>
