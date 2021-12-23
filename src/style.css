@@ -198,6 +198,10 @@ html, body {
     border: 1px solid #787777
 }
 
+#user-input__bar:disabled {
+    background: #bebaba;
+}
+
 #user-input__bar::placeholder {
     font-size: 20px;
 }
