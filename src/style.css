@@ -37,7 +37,7 @@ html, body {
 }
 
 .binTable__input1, .binTable__input2, .binTable__result {
-    font-size: 36px;
+    font-size: 37px;
 }
 
 .binTable__separator {
@@ -167,7 +167,7 @@ html, body {
 }
 
 .oper-button--grayout {
-    background: #838181;
+    background: #919090;
 }
 
 .oper-button-wrapper {
@@ -176,7 +176,7 @@ html, body {
     margin-top: 25px;
 }
 
-#user-input__bar {
+.user-input__bar {
     flex-grow: 1;
     height: 100%;
     outline: none;
@@ -185,11 +185,11 @@ html, body {
     border: 1px solid #787777
 }
 
-#user-input__bar:disabled {
+.user-input__bar:disabled {
     background: #bebaba;
 }
 
-#user-input__bar::placeholder {
+.user-input__bar::placeholder {
     font-size: 20px;
 }
 
@@ -226,12 +226,12 @@ html, body {
     height: 53px;
 }
 
-#user-input__radix-select {
+.user-input__radix-select {
     -webkit-appearance: none;
     appearance: none;
     font-size: 21px;
     font-family: monospace;
-    padding-left: 23px;
+    padding-left: 25px;
     width: 72px;
     height: 100%;
     position: relative;
@@ -242,7 +242,7 @@ html, body {
     z-index:100;
 }
 
-#user-input__radix-select:focus {
+.user-input__radix-select:focus {
     outline: none;
 }
 
@@ -380,7 +380,7 @@ html, body {
         display: none;
     }
 
-    .output-bar__input, #user-input__bar {
+    .output-bar__input, .user-input__bar {
         width: 100px; 
     }
     

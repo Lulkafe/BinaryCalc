@@ -1,5 +1,5 @@
 import React from 'react';
-import { useReducer, useContext } from 'react';
+import { useReducer, useContext, useRef } from 'react';
 import { bitReducer, initState, actions } from './reducer';
 import { Item, Bitwise, Radix } from './enum';
 
@@ -293,48 +293,53 @@ function UserInput () {
 function UserInputBar () {
     
     const { dispatch, state } = useContext(CalcContext);
-    const placeholder = 'Enter your value here';
+    const placeholder = 'Type your value here';
     const disabled = state.item === Item.Result;
-    const inputBarId = 'user-input__bar';
-    const selectId = 'user-input__radix-select';
+    const selectRef = useRef(null);
+    const inputRef = useRef(null);
     const btnCls = 'user-input__enter-btn' + 
         (disabled? ' user-input__enter-btn--disabled' : '');
-    const getInputValue = () => 
-        (document.getElementById(inputBarId) as HTMLInputElement).value; 
-    const onInput = () => 
-        dispatch({ type: actions.input.validate, value: getInputValue() })
-    const onClick = () => 
-        dispatch({ type: actions.input.update, value: getInputValue() });
-    const onChange = () => {
+
+    const onUserInput = () => 
+        dispatch({ type: actions.input.validate, value: inputRef.current.value });
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dispatch({ type: actions.input.update, value: inputRef.current.value });
+    }
+    const onOptionChange = () => {
         let radix: Radix = Radix.DEC;
-        let value = 
-            (document.getElementById(selectId) as HTMLSelectElement).value;
-        
+        let value = selectRef.current.value;
+
         if (value === "BIN") radix = Radix.BIN; 
         if (value === "HEX") radix = Radix.HEX; 
         
         dispatch({ type: actions.radix.change, value: radix});
-        onInput();
+        onUserInput();
     };
     
     return (
-        <div className='user-input__bar-wrapper'>
+        <form className='user-input__bar-wrapper' onSubmit={onSubmit}>
             <div className='user-input__radix-select-wrapper'>
-                <select id={selectId}
+                <select ref={selectRef}
+                    className='user-input__radix-select'
                     defaultValue='DEC'
-                    onChange={onChange} >
+                    onChange={onOptionChange} >
                     <option value='BIN'>BIN</option>
                     <option value='DEC'>DEC</option>
                     <option value='HEX'>HEX</option>
                 </select>
                 <span className='user-input__radix-select-arrow'>&#9660;</span>
             </div>
-            <input id={inputBarId} type="text" 
-                onInput={onInput}                
-                placeholder={placeholder} disabled={disabled}/>  
-            <button className={btnCls} type="button" 
-                onClick={onClick} disabled={disabled}>Enter</button>
-        </div>
+            <input ref={inputRef} type="text" 
+                className='user-input__bar'
+                onInput={onUserInput}                
+                placeholder={placeholder} 
+                disabled={disabled}/>  
+            <button className={btnCls} type="submit" 
+                 disabled={disabled}>Enter</button>
+        </form>
     )
 }
 
