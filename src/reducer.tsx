@@ -212,7 +212,10 @@ export const bitReducer = (state, action) => {
         
 
         case actions.reset:
-            return initState;
+            return {
+                ...initState,
+                radix_for_input: state.radix_for_input
+            };
 
     }
 
