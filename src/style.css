@@ -166,8 +166,9 @@ html, body {
     cursor: auto;
 }
 
-.oper-button--grayout {
-    background: #919090;
+.oper-button--highlight {
+    background: #cd8739;
+    color: white
 }
 
 .oper-button-wrapper {

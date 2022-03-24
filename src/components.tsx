@@ -138,7 +138,7 @@ function OperationButton (props) {
 function BitwiseButtons () {
     const { state, dispatch } = useContext(CalcContext);
     const getClass = (bw: Bitwise) => state.bitwise !== bw? 
-        '' : 'oper-button--grayout'
+        '' : 'oper-button--highlight'
     const createAction = (oper:Bitwise) => () => dispatch({
         type: actions.bitwise.change,
         value: oper
