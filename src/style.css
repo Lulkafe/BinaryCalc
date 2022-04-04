@@ -91,6 +91,7 @@ html, body {
     width: 66px;
     height: 100%;
     font-size: 18px;
+    text-align: center;
     color: white;
     background: #73B97A;
     border-radius: 2px;
@@ -122,7 +123,10 @@ html, body {
     outline: none;
     font-size: 24px;
     padding-left: 10px;
-    border: 1px solid #787777
+    border: 1px solid #787777;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
 }
 
 .output-bar__wrapper {
@@ -183,7 +187,9 @@ html, body {
     outline: none;
     font-size: 24px;
     padding-left: 10px;
-    border: 1px solid #787777
+    border: 1px solid #787777;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .user-input__bar:disabled {
@@ -199,6 +205,7 @@ html, body {
     width: 66px;
     height: 100%;
     font-size: 18px;
+    text-align: center;
     color: white;
     border-radius: 2px;
     background: #8EBEE1;
