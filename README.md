@@ -2,7 +2,7 @@
 A simple calculator for binaries. \
 You can directly flip them by clicking and see the result.
 
-The demo is available [here](https://lulkafe.github.io/BinaryCalc/)
+A demo is available [here](https://lulkafe.github.io/BinaryCalc/)
 
 ## Motivation behind this project
 When I was working on an embedded system project, \
