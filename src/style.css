@@ -92,6 +92,7 @@ html, body {
     height: 100%;
     font-size: 18px;
     text-align: center;
+    padding: 0;
     color: white;
     background: #73B97A;
     border-radius: 2px;
@@ -206,6 +207,7 @@ html, body {
     height: 100%;
     font-size: 18px;
     text-align: center;
+    padding: 0;
     color: white;
     border-radius: 2px;
     background: #8EBEE1;
