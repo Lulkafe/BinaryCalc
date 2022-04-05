@@ -8,7 +8,8 @@
     "build": "webpack --config webpack.dev.js",
     "build:dev": "webpack --config webpack.dev.js",
     "build:prod": "webpack --config webpack.prod.js",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch --config webpack.dev.js",
+    "watch:dev": "webpack --watch --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -39,6 +40,7 @@
   },
   "dependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-responsive": "^9.0.0-beta.6"
   }
 }

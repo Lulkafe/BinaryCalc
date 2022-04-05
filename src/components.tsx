@@ -2,6 +2,7 @@ import React from 'react';
 import { useReducer, useContext, useRef } from 'react';
 import { bitReducer, initState, actions } from './reducer';
 import { Item, Bitwise, Radix } from './enum';
+import { useMediaQuery } from "react-responsive";
 
 const CalcContext = React.createContext(undefined);
 
@@ -14,6 +15,7 @@ export default function BitCalc () {
         <div id='app__container'>
             <CalcContext.Provider value={{state, dispatch}}>
                 <Window>
+                    <NoteForUser />
                     <BinaryTable />
                     <OperationButtons />
                     <hr />
@@ -45,6 +47,16 @@ function Window (props) {
                 {props.children}
             </div> 
         </div>
+    )
+}
+
+function NoteForUser () {
+
+    const isMobile = useMediaQuery({ query: '(max-width: 875px)'});
+    const verb = isMobile? "Tap" : "Click";
+
+    return (
+        <h3 className="header-for-user">{verb} binaries ⬇️</h3>
     )
 }
 
