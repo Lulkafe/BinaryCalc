@@ -127,7 +127,8 @@ html, body {
     border: 1px solid #787777;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .output-bar__wrapper {
@@ -168,8 +169,8 @@ html, body {
 
 .header-for-user {
     font-family: Arial, Helvetica, sans-serif; 
-    margin-top: 15px;
-    margin-bottom: 15px
+    margin-top: 20px;
+    margin-bottom: 40px
 }
 
 .ui__bit-mnp-button--disabled {
@@ -197,6 +198,8 @@ html, body {
     border: 1px solid #787777;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .user-input__bar:disabled {
@@ -334,6 +337,10 @@ html, body {
 
 @media only screen and (max-width: 875px) {
     
+    .binTable__input1, .binTable__input2, .binTable__result {
+        font-size: 39px;
+    }
+
     .binTable__wrapper {
         overflow-x: scroll;
     }
