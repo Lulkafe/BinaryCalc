@@ -56,7 +56,7 @@ function NoteForUser () {
     const verb = isMobile? "Tap" : "Click";
 
     return (
-        <h3 className="header-for-user">{verb} binaries ⬇️</h3>
+        <h3 className="header-for-user">{verb} binaries 👇</h3>
     )
 }
 
