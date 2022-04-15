@@ -116,6 +116,9 @@ function convertHexIntoDec (input: string): number {
     if (input.startsWith('0X'))
         input = input.slice(2);
 
+    if (input.startsWith('-0X'))
+        input = '-' + input.slice(3);
+
     if (input === '')
         throw new Error('Value is reqquired');
 
