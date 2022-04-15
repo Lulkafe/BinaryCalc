@@ -39,9 +39,6 @@ export const actions = {
 
 export const bitReducer = (state, action) => {
 
-    console.log(`New Action dispatched: ${action.type}`);
-    console.log(action);
-
     const { input1, input2,  bitwise } = state;
     const calculateResult = (v1, v2, oper=bitwise) => {
         if (oper === Bitwise.AND)
