@@ -1,20 +1,6 @@
 import { Radix } from './enum';
 
 
-/* Current Specifications
-   (1) Signed 32 bit value
-   (2) No support for fractions (e.g. "12.3456")
-   (3) Special cases:
-        (a) Only "-" 
-            BIN: Error (because BIN doesn't accept "-")
-            DEC: => 0
-            HEX: => 0
-        (b) "-0" => 0 (*except BIN)
-        (c) Start with "+-", "-+" => Error
-              e.g. "+-100", "-+200"
-*/
-
-
 export default function convertUserInput (input: string, base: Radix): number {
 
     if (typeof input !== 'string') 

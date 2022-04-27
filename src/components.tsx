@@ -7,8 +7,7 @@ import { useMediaQuery } from "react-responsive";
 const CalcContext = React.createContext(undefined);
 
 
-export default function BitCalc () {
-
+export default function BinaryCalc () {
     const [ state, dispatch ] = useReducer(bitReducer, initState);
 
     return (
@@ -30,7 +29,6 @@ export default function BitCalc () {
 
 //******* COMPONENTS FOR WINDOW (WRAPPER) *******
 function Window (props) {
-
     const { dispatch } = useContext(CalcContext);
 
     const onClick = () => {
@@ -51,7 +49,6 @@ function Window (props) {
 }
 
 function NoteForUser () {
-
     const isMobile = useMediaQuery({ query: '(max-width: 875px)'});
     const verb = isMobile? "Tap" : "Click";
 
@@ -63,7 +60,6 @@ function NoteForUser () {
 
 //******* COMPONENTS FOR BINTABLE SECTION *******
 function BinaryTable () {
-
     const { state, dispatch} = useContext(CalcContext);
     const { input1, input2, result } = state;
     const ary = [...new Array(32)];
@@ -132,7 +128,6 @@ function OperationButtons (props) {
 
 
 function OperationButton (props) {
-
     const { cname, disabled } = props;
 
     return (
@@ -290,7 +285,6 @@ function OutputBar(props) {
 
 
 function UserInput () {
-
     const { state } = useContext(CalcContext);
 
     return (
@@ -302,8 +296,7 @@ function UserInput () {
 }
 
 
-function UserInputBar () {
-    
+function UserInputBar () {   
     const { dispatch, state } = useContext(CalcContext);
     const placeholder = 'Type your value here';
     const disabled = state.item === Item.Result;
@@ -356,7 +349,6 @@ function UserInputBar () {
 }
 
 function ValidationMassage (prop) {
-
     const { state } = useContext(CalcContext);
     const disabled = state.item === Item.Result;
 
