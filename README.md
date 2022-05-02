@@ -1,6 +1,6 @@
 # Binary Calculator 
-A simple calculator for binaries. \
-You can directly flip them by clicking and see the result.
+A simple calculator for binary manipulation. \
+You can directly flip bits by a click and immediately see the result.
 
 A demo is available [here](https://lulkafe.github.io/BinaryCalc/)
 
