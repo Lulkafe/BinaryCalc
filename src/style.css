@@ -66,6 +66,7 @@ body {
 
 .binTable__wrapper {
   width: 100%;
+  overflow-x: scroll;
 }
 
 .binTable__input1,
@@ -328,7 +329,6 @@ body {
 .window__content-wrapper {
   padding: 10px 40px 10px 40px;
   max-width: 100%;
-  overflow-x: scroll;
 }
 
 .window__menubar {
@@ -358,10 +358,6 @@ body {
   .binTable__input2,
   .binTable__result {
     font-size: 39px;
-  }
-
-  .binTable__wrapper {
-    overflow-x: scroll;
   }
 
   .window {
